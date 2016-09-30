@@ -3,7 +3,7 @@
 Weipeng Cao, Jen Dooley, Lauren Jensen, Justin Schiller, Yang Song, and Peilun Zhang
 
 
-##Preferred Workflow:
+##Preferred Workflow
 
 1. For every feature, create a new branch _(preferred, not required)_
 2. Write codes ONLY in feature branch _(new or old feature branch)_
