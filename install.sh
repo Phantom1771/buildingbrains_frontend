@@ -7,8 +7,10 @@
 #################################################################################
 
 cp .env.example .env
-mysql -e "create database IF NOT EXISTS homestead;" -uroot
-mysql -uroot -e "GRANT ALL PRIVILEGES ON homestead.* To 'homestead'@'localhost' IDENTIFIED BY 'secret';"
+echo 'Enter your mysql password for root here'
+mysql -e "create database IF NOT EXISTS homestead;" -uroot -p
+echo 'Enter your mysql password for root here'
+mysql -uroot -p -e "GRANT ALL PRIVILEGES ON homestead.* To 'homestead'@'localhost' IDENTIFIED BY 'secret';"
 composer self-update
 composer install
 php artisan key:generate
