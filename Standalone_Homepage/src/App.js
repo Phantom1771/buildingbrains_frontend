@@ -5,6 +5,7 @@ import Reg from './Reg.js';
 import Headers from './Headers.js';
 import Welcome from './Welcome.js';
 import Notification from './Notification.js';
+import Login from './Login.js';
 
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
     switch (this.state.route) {
       case '/Reg': Child = Reg; break;
       case '/Home': Child = Welcome ; break;
+      case '/Login': Child = Login ; break;
       default:      Child = Notification;
     }
     console.log(window.location.hash.substr(1))

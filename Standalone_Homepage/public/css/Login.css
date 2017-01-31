@@ -1,0 +1,71 @@
+*{
+ margin:0px;
+ padding:0px;
+ }
+body{
+ font-family:Tahoma, Geneva, sans-serif;
+ }
+#kkcontainer{
+ width:550px;
+ background-color:rgba(250,250,252,.9);
+ margin:auto;
+ margin-top:10px;
+ margin-bottom:10px;
+ box-shadow:0 0 3px #999;
+ 
+ }
+ #container {
+   width:550px;
+   background-color:rgba(250,250,252,.9);
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+}
+#container_body{
+ padding:20px;
+ }
+.form_title{
+ font-size:35px;
+ color:#141823;
+ text-align:center;
+ padding:10px;
+ font-weight:normal;
+ }
+#form_name{
+ padding:25px 0 0 15px;
+ }
+.formbox{
+  margin-right:20px;
+ }
+#email_form{
+ clear:both;
+ padding:0px 0 10px 0px;
+ }
+.input_email{
+ width:434px;
+ padding:5px;
+ font-size:18px;
+ }
+#password_form{
+ padding:0px 0 10px 0px;
+ }
+.input_password{
+ width:434px;
+ padding:5px;
+ font-size:18px;
+ }
+select{
+ padding:5px;
+ }
+#sign_user{
+ font-size:14px;
+ color:#FFF;
+ text-align:center;
+ background-color:#3B5998;
+ padding:10px;
+ margin-top:10px;
+ cursor: pointer;
+ }
+#errorBox{
+ color:#F00;
+ }
