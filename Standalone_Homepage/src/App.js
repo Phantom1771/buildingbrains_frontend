@@ -1,20 +1,44 @@
 import React, { Component } from 'react';
+
 import Nav from './Nav.js';
+import Reg from './Reg.js';
 import Headers from './Headers.js';
 import Welcome from './Welcome.js';
 import Notification from './Notification.js';
 
 
 class App extends Component {
+  
+  constructor(props){
+    super(props);
+    this.state = {
+      route: window.location.pathname//.substr(1)
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('hashchange', () => {
+      this.setState({
+        route: window.location.hash.substr(1)
+      })
+    })
+  };
+
   render() {
+    let Child
+    switch (this.state.route) {
+      case '/Reg': Child = Reg; break;
+      case '/Home': Child = Welcome ; break;
+      default:      Child = Notification;
+    }
+    console.log(window.location.hash.substr(1))
     return (
       <div className="App">
         <Headers />        
         <Nav />
-        <Welcome />
-        <Notification /> 
+        <Child />
       </div>
-    );
+    )
   }
 }
 
