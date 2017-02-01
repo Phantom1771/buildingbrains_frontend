@@ -4,7 +4,7 @@ class Nav extends Component {
   render() {
     return (
        <div className="Nav">
-        <a href="http://www.buildingbrains.co">
+        <a href="/Home">
           <div className="Home-Button" >
           </div>
         </a>
@@ -24,7 +24,7 @@ class Nav extends Component {
           </div>
         </a>
 
-        <a href="http://www.msn.com">
+        <a href="/Login">
           <div className="Users-Button">
           </div>
         </a>
