@@ -35,7 +35,7 @@ class Login extends Component {
 						<h3>Password: </h3>
 						
 						<div id="password_form">
-							<input type="text" value={this.state.password} onChange={this.handlePwdChange} placeholder="Password" className="input_password"/>
+							<input type="password" value={this.state.password} onChange={this.handlePwdChange} placeholder="Password" className="input_password"/>
 						</div>
 						
 						<div>

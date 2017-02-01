@@ -24,16 +24,10 @@ class Nav extends Component {
           </div>
         </a>
 
-        <a href="/Reg">
+        <a href="/Login">
           <div className="Users-Button">
           </div>
         </a>
-        
-        <a href="/Login">
-		  <button className="Login-Button">
-			LOGIN
-		  </button>
-		</a>
        </div>
         
     );
