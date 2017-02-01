@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Login extends Component {
+class LoginForm extends Component {
 	 constructor(props) {
 		super(props);
 		this.state = {uname: '',password: ''};
@@ -15,7 +15,12 @@ class Login extends Component {
 		this.setState({password: event.target.value});
 	 }
 	 handleSubmit(event) {
-		alert('A name and password were submitted: ' + this.state.uname + this.state.password);
+		var formData = {
+			uname: this.state.uname,
+			password: this.state.password
+		}
+		var requestBody = JSON.stringify(formData);
+		alert(requestBody);
 		event.preventDefault();
 	 }
      render() {
@@ -29,18 +34,16 @@ class Login extends Component {
 						<h3>Username/Email Address: </h3>
 						
 						<div id="email_form">
-							<input type="text" value={this.state.uname} onChange={this.handleUserChange}  placeholder="Your Email" className="input_email"/>
+							<input type="text" value={this.state.uname} onChange={(e) => this.handleUserChange(e)}  placeholder="Your Email" className="input_email"/>
 						</div> 
 						
 						<h3>Password: </h3>
 						
 						<div id="password_form">
-							<input type="password" value={this.state.password} onChange={this.handlePwdChange} placeholder="Password" className="input_password"/>
+							<input type="password" value={this.state.password} onChange={(e) => this.handlePwdChange(e)} placeholder="Password" className="input_password"/>
 						</div>
 						
-						<div>
-							<p id="sign_user" onClick={this.handleSubmit}>Login </p>
-						</div>
+							<input type="submit" value="Submit" />
 						
 					</form>
 				</div>
@@ -54,4 +57,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default LoginForm;

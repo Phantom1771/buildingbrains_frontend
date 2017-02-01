@@ -8,24 +8,24 @@ class RegForm extends Component {
 					<form name="form" >
 						<div id="errorBox"></div>
 
-						<div id="first_form">
-							First Name: <input type="text" name="Name"  placeholder="First Name"  class="input_name" />
-						</div>
-
-						<div id="last_form">
-							Last Name: <input type="text" name="LastName" placeholder="Last Name" class="input_name" />
+						<div id="email_form">
+							First Name: <input type="text" name="Name"  placeholder="First Name"  className="input_name" />
 						</div>
 
 						<div id="email_form">
-						  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-Mail: <input type="text" name="Email"   placeholder="Your Email" class="input_email" />
+							Last Name: <input type="text" name="LastName" placeholder="Last Name" className="input_name" />
+						</div>
+
+						<div id="email_form">
+						  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-Mail: <input type="text" name="Email"   placeholder="Your Email" className="input_name" />
 						</div>
 						
 						<div id="email_form">
-						 Username: <input type="text" name="Email" placeholder="Your Email" class="input_email" />
+						  &nbsp;Password: <input type="password" name="Email" placeholder="Your Email" className="input_name" />
 						</div>
 						
-						<div id="password_form">
-							&nbsp;Password: <input type="password" name="Password" placeholder="New Password" class="input_password" />
+						<div id="email_form">
+							 &nbsp;&nbsp;&nbsp;Confirm: <input type="password" name="Password" placeholder="New Password" className="input_name" />
 						</div>
 						
 						<div>
