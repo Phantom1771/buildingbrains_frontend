@@ -43,7 +43,7 @@ class LoginForm extends Component {
 							<input type="password" value={this.state.password} onChange={(e) => this.handlePwdChange(e)} placeholder="Password" className="input_password"/>
 						</div>
 						
-							<input type="submit" value="Submit" />
+							<p id="sign_user"type="submit" value="Submit" onClick={this.handleSubmit}> Submit</p>
 						
 					</form>
 				</div>
