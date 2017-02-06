@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Nav from './Nav.js';
 import Headers from './Headers.js';
-import Welcome from './Welcome.js';
 import Notification from './Notification.js';
+import Home from './Home.js';
 
 
 class App extends Component {
@@ -11,8 +11,7 @@ class App extends Component {
       <div className="App">
         <Headers />        
         <Nav />
-        <Welcome />
-        <Notification /> 
+        <Home />
       </div>
     );
   }
