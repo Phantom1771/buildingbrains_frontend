@@ -36,9 +36,8 @@ class App extends Component {
     console.log(window.location.hash.substr(1))
     return (
       <div className="App">
-        <Headers />        
+        <Headers />
         <Nav />
-        <Child />
       </div>
     )
   }

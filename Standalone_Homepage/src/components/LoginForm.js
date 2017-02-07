@@ -50,7 +50,7 @@ class LoginForm extends Component {
                 <p>
 					Don't have an account? Register here: 
 					<a href="/Reg">
-						<p id="register_user">Register </p>
+						<button type="button" className="btn btn-danger">Register </button>
 					</a>
 				</p>
             </div>

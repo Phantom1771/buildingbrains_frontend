@@ -3,33 +3,30 @@ import React, { Component } from 'react';
 class Nav extends Component {
   render() {
     return (
-       <div className="Nav">
-        <a href="/Home">
-          <div className="Home-Button" >
-          </div>
-        </a>
 
-        <a href="http://www.google.com">
-          <div className="Device-Button">
-          </div>
-        </a>
 
-        <a href="http://www.bing.com">
-          <div className="Stats-Button">
-          </div>
-        </a>
-        
-        <a href="http://www.yahoo.com">
-          <div className="Settings-Button">
-          </div>
-        </a>
+   <div className="container-fluid">
+      <div className="row">
+        <div className="col-sm-3 col-md-2 sidebar">
+          <ul className="nav nav-sidebar">
+            <li className="active "><a href="#">  
+              <span className="glyphicon glyphicon-home"></span> Home
+            </a></li>
+          </ul>
+          <ul className="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">One more nav</a></li>
+          </ul>
+        </div>
+        </div>
+        </div>
 
-        <a href="/Login">
-          <div className="Users-Button">
-          </div>
-        </a>
-       </div>
-        
+
+
+
+
     );
   }
 }
