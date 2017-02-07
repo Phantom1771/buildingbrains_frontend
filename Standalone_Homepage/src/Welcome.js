@@ -10,9 +10,11 @@ class Welcome extends Component {
 					Welcome Home!
 				</h1>
 				<h3>
-					The current weather conditions are
+					The current weather conditions in your area are:
 				</h3>
-				<WeatherDisplay />
+				<div className="col-md-offset-3">
+					<WeatherDisplay />
+				</div>
             </div>
     );
   }

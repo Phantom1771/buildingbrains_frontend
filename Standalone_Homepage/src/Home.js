@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <div className="Home">
         &nbsp;
-		<div className="col-md-16 col-md-offset-4" style={{height:550}}>
+		<div className="col-md-4 col-md-offset-2">
 			<Welcome />
 			<Customize /> 
 		</div>
