@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../public/img/bblogo.JPG';
 
 class Headers extends Component {
      render() {
@@ -17,7 +16,7 @@ class Headers extends Component {
             </div>
             <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+                <li><a href="/Login">Login</a></li>
             </ul>
             </div>
         </div>
