@@ -27,7 +27,7 @@ class Login extends Component {
                                             <input name="remember" type="checkbox" value="Remember Me"/> Remember Me
                                         </label>
                                     </div>
-                                    <a className="btn btn-lg btn-primary btn-block" type="submit" >Login</a>
+                                    <a href="/Home" className="btn btn-lg btn-primary btn-block" type="submit" >Login</a>
                                     <a href="/Reg" className="btn btn-lg btn-danger btn-block" type="submit">Register</a>
                                 </fieldset>
                                 </form>
