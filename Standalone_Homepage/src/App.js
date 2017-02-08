@@ -13,7 +13,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      route: window.location.pathname//.substr(1)
+      route: window.location.pathname,//.substr(1)
+      isLogin: true
     }
   }
 
@@ -30,14 +31,13 @@ class App extends Component {
     switch (this.state.route) {
       case '/Reg': Child = Reg; break;
       case '/Home': Child = Welcome ; break;
-      case '/Login': Child = Login ; break;
+      case '/Login': Child = Login; this.state.isLogin=false; break;
       default:      Child = Notification;
     }
-    console.log(window.location.hash.substr(1))
     return (
       <div className="App">
-        <Headers />        
-        <Nav />
+        <Headers />
+       { this.state.isLogin ? <Nav /> : null }
         <Child />
       </div>
     )

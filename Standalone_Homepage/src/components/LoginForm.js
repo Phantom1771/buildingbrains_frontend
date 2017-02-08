@@ -27,14 +27,14 @@ class LoginForm extends Component {
         return (
             <div id="Login">
 				<div class="formbox">
-					<form name="form" onSubmit={this.handleSubmit}>
+					<form name="form" >
 					
 						<div id="errorBox"> </div>
 						
 						<h3>Username/Email Address: </h3>
 						
 						<div id="email_form">
-							<input type="text" value={this.state.uname} onChange={(e) => this.handleUserChange(e)}  placeholder="Your Email" className="input_email"/>
+							<input type="text" value={this.state.uname} onChange={(e) => this.handleUserChange(e)}  placeholder="Your Email" className="input_password"/>
 						</div> 
 						
 						<h3>Password: </h3>
@@ -42,17 +42,12 @@ class LoginForm extends Component {
 						<div id="password_form">
 							<input type="password" value={this.state.password} onChange={(e) => this.handlePwdChange(e)} placeholder="Password" className="input_password"/>
 						</div>
-						
-							<p id="sign_user"type="submit" value="Submit" onClick={this.handleSubmit}> Submit</p>
-						
+						<div>
+					 <a className="btn btn-primary col-xs-4 classWithPad" href="/Reg">Register</a> 
+					 <a className="btn btn-success p-3 col-xs-4  classWithPad " href="/Login">Login</a>	
+						</div>
 					</form>
 				</div>
-                <p>
-					Don't have an account? Register here: 
-					<a href="/Reg">
-						<p id="register_user">Register </p>
-					</a>
-				</p>
             </div>
     );
   }
