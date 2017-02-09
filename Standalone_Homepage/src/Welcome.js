@@ -5,6 +5,7 @@ class Welcome extends Component {
 	
      render() {
         return (
+        <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2 main">
             <div className="Welcome">
 				<h1>
 					Welcome Home!
@@ -16,6 +17,7 @@ class Welcome extends Component {
 					<WeatherDisplay />
 				</div>
             </div>
+           </div>
     );
   }
 }
