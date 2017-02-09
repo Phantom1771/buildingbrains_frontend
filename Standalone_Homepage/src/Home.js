@@ -5,12 +5,9 @@ import Customize from './Customize.js'
 class Home extends Component {
   render() {
     return (
-      <div className="Home">
-        &nbsp;
-		<div className="col-md-4 col-md-offset-2">
+      <div className="Home" >
 			<Welcome />
 			<Customize /> 
-		</div>
       </div>
     );
   }

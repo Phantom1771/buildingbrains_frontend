@@ -77,8 +77,8 @@ WeatherDisplay.propTypes = {
 };
 
 WeatherDisplay.defaultProps = {
-  width: 256,
-  height: 144,
+  width: 512,
+  height: 288,
   currentTemperature: 40,
   currentCondition: 'cloudy',
 };

@@ -14,7 +14,7 @@ function getDevices(deviceJSON) {
         return deviceOptions;
      }
 function getDeviceStatus(deviceID) {
-	if (deviceID === -1)
+	if (!deviceID)
 	{
 		return -1;
 	}
@@ -36,27 +36,36 @@ class Customize extends Component {
 		this.setState({device: event.target.value});
 	 }
 	 displayDeviceStatus(statusJSON) {
-		return (
-			<div className="deviceStatus">
-				<div className="col-md-16">
-					<h2> {this.state.device} </h2>
-					<h3> Power: {statusJSON.Power} </h3>
-				</div>
-			</div>
-			);
+		if(statusJSON != -1)
+		{
+			var infoData = Object.keys(statusJSON).map((k, idx) => {
+               return (
+                 <p key={idx}><strong>{k}</strong> - {statusJSON[k]}</p>
+               );
+            });
+
+			return (
+					<div className="deviceStatus">
+						<h2> {this.state.device} </h2>
+						<h3>{infoData}</h3>
+					</div>
+				);
+			}
 		}
 	 
      render() {
 		var devicesAvailable = getDevices(dummyDeviceList);
 		var deviceStatus = this.displayDeviceStatus(getDeviceStatus(this.state.device));
         return (
-            <div className="customize">
-				{deviceStatus}
-				<p>Want to add a device to show on this page? Select it from the list below! </p>
-			    <select className="home-form" onChange={this.handleChange}>
-					{devicesAvailable}
-			    </select>
-            </div>
+			<div className="col-md-10 col-md-offset-2">
+				<div className="Customize">
+					<p>Want to add a device to show on this page? Select it from the list below! </p>
+					<select className="home-form" onChange={this.handleChange}>
+						{devicesAvailable}
+					</select>
+					{deviceStatus}
+				</div>
+			</div>
     );
   }
 }

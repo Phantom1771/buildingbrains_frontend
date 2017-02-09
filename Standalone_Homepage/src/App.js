@@ -30,7 +30,6 @@ class App extends Component {
     let Child
     switch (this.state.route) {
       case '/Reg': Child = Reg; break;
-      case '/Home': Child = Home ; break;
       case '/Login': Child = Login; this.state.isLogin=false; break;
       default:      Child = Home;
     }

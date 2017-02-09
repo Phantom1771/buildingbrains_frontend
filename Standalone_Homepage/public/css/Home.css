@@ -1,7 +1,7 @@
 .home-form {
     display: block;
     width: 100%;
-    height: 34px;
+    height: 3%;
     padding: 1% 1%;
     line-height: 1.42857;
     color: #555;
@@ -13,12 +13,14 @@
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }
 .Home {
-	padding: 2% 1%;
+	padding: 4% 1%;
 	text-align: center;
 	}
-.deviceStatus {
+
+
+.Customize {
 	position: absolute;
-	left: 170%;
-	top: 30%;
+	left: 60%;
+	top: -35500%;
 }
 
