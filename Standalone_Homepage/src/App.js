@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import Nav from './Nav.js';
 import Reg from './Reg.js';
 import Headers from './Headers.js';
-import Welcome from './Welcome.js';
 import Notification from './Notification.js';
+import Home from './Home.js';
 import Login from './Login.js';
 
 
@@ -30,9 +30,8 @@ class App extends Component {
     let Child
     switch (this.state.route) {
       case '/Reg': Child = Reg; break;
-      case '/Home': Child = Welcome ; break;
       case '/Login': Child = Login; this.state.isLogin=false; break;
-      default:      Child = Notification;
+      default:      Child = Home;
     }
     return (
       <div className="App">

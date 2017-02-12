@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
-
-var insideTemp = 67;
-var outsideTemp = 36;
+import WeatherDisplay from './Weather.js';
 
 class Welcome extends Component {
+	
      render() {
         return (
-        <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-2 main">
+        <div className="col-md-6 col-md-offset-2">
             <div className="Welcome">
-			    <h1>
-			    	Welcome Home!
-                </h1>
-                <h2>
-                    Inside Temperature:
-                </h2>
-                <h1>
-                    {insideTemp}
-                </h1>
-                <h2>
-                    Outside Temperature:
-                </h2>
-                <h1>
-                    {outsideTemp}
-                </h1>
+				<h1>
+					Welcome Home!
+				</h1>
+				<h3>
+					The current weather conditions in your area are:
+				</h3>
+				<div className="col-md-offset-3">
+					<WeatherDisplay />
+				</div>
             </div>
-           </div>
+        </div>
     );
   }
 }
