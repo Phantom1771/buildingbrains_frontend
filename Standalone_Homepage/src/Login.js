@@ -11,8 +11,7 @@ class Login extends Component {
 	handlePasswordChange(event) {
 	   this.setState({password: event.target.value});
 	}
-  render() {
-	  var attemptLogin = function() {
+	handleSubmit(event){
 		  fetch('/users/login', {
 			  method: 'post',
 			  headers: {
@@ -43,7 +42,9 @@ class Login extends Component {
 		  else {
 			  alert('Login fail');
 		  }
-        }
+        
+	}
+  render() {
       return (
             <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-0 main">
                 <div className="container">
@@ -54,7 +55,6 @@ class Login extends Component {
                                     <h3 className="panel-title" style={{'text-align': 'center'}}>Please Sign In</h3>
                                 </div>
                                 <div className="panel-body">
-									<form accept-charset="UTF-8" role="form" onSubmit={attemptLogin}>
 										<fieldset>
 											<div className="form-group">
 												<input className="form-control" placeholder="E-mail" name="email" type="text" onChange={this.handleEmailChange.bind(this)}/>
@@ -62,12 +62,11 @@ class Login extends Component {
 											<div className="form-group">
 												<input className="form-control" placeholder="Password" name="password" type="password" onChange={this.handlePasswordChange.bind(this)}/>
 											</div>											
-											<button className="btn btn-lg btn-primary btn-block" type="submit" >Login</button>
+											<button className="btn btn-lg btn-primary btn-block" type="submit" onClick={this.handleSubmit.bind(this)} >Login</button>
 											<a href="/Recovery" className="btn btn-sm btn-secondary btn-block" type="submit">Forgot Your Password? Click Here!</a>
 											<a href="/Reg" className="btn btn-sm btn-secondary btn-block" type="submit">Don't have an account yet? Register Here!</a>
 											
 										</fieldset>
-									</form>
                                 </div>
                             </div>
                         </div>
