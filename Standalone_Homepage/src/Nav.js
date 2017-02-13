@@ -38,6 +38,7 @@ class Nav extends Component {
       return (
         <div className="container-fluid">
           <div className="row">
+
             <div className="col-sm-3 col-md-2 sidebar">
                 <ul className="nav nav-sidebar">
                   <li className={this.state.homeActive}>

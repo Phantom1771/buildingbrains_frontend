@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Nav from './Nav.js';
 import Reg from './Reg.js';
+import Device from './Device.js';
 import Headers from './Headers.js';
 import Notification from './Notification.js';
 import Home from './Home.js';
@@ -14,7 +15,7 @@ class App extends Component {
     super(props);
     this.state = {
       route: window.location.pathname,//.substr(1)
-      isLogin: true
+      isLogin:true 
     }
   }
 
@@ -29,6 +30,7 @@ class App extends Component {
   render() {
     let Child
     switch (this.state.route) {
+      case '/Devices': Child = Device; break;
       case '/Reg': Child = Reg; break;
       case '/Login': Child = Login; this.state.isLogin=false; break;
       default:      Child = Home;

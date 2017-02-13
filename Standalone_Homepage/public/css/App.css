@@ -131,3 +131,37 @@ body {
   top:110px;
 }
 
+.rcorners1 {
+    border-radius: 25px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    background: #73AD21;
+    padding: 20px; 
+    width: 200px;
+    height: 250px; 
+}
+.rcorners2 {
+    border-radius: 25px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    background: #337ab7;
+    padding: 20px; 
+    width: 200px;
+    height: 250px; 
+}
+.rcorners0 {
+    border-radius: 25px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    background:white;
+    padding: 20px; 
+    width: 900px;
+    height: 500px; 
+}
+
+.fa-10x{
+  font-size: 10em;
+}
