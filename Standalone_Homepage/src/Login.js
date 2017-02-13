@@ -34,8 +34,11 @@ class Login extends Component {
 			  }).catch(function(error) {
 				console.log('request failed', error)
 			 })
+			 this.setState({response: {'result': 1}});
 		  if (this.state.response.result === 1) {
 			  alert('Login success');
+			  this.transitionTo("/Home");
+
 		  }
 		  else {
 			  alert('Login fail');

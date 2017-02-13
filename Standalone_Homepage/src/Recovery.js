@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 class Recovery extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {email: '', password: '',response: ''};
+		this.state = {email: '',response: ''};
 	 }
 	 handleEmailChange(event) {
 		this.setState({email: event.target.value});
 	}
   render() {
 	  var attemptRecovery = function() {
-		  fetch('/users/login', {
+		  fetch('/users/forgot', {
 			  method: 'post',
 			  headers: {
 				'Accept': 'application/json',
@@ -18,7 +18,6 @@ class Recovery extends Component {
 			  },
 			  body: JSON.stringify({
 				email: this.state.email,
-				password: this.state.password,
 			  })
 			}).then(status)
 			  .then((responseData) => {
@@ -33,6 +32,7 @@ class Recovery extends Component {
 			 })
 		  if (this.state.response.result === 1) {
 			  alert('Recovery success');
+			  this.transitionTo("/Login");
 		  }
 		  else {
 			  alert('Recovery fail');
