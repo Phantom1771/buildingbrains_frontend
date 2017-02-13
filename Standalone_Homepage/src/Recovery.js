@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Login extends Component {
+class Recovery extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {email: '', password: '',response: ''};
@@ -8,11 +8,8 @@ class Login extends Component {
 	 handleEmailChange(event) {
 		this.setState({email: event.target.value});
 	}
-	handlePasswordChange(event) {
-	   this.setState({password: event.target.value});
-	}
   render() {
-	  var attemptLogin = function() {
+	  var attemptRecovery = function() {
 		  fetch('/users/login', {
 			  method: 'post',
 			  headers: {
@@ -35,10 +32,10 @@ class Login extends Component {
 				console.log('request failed', error)
 			 })
 		  if (this.state.response.result === 1) {
-			  alert('Login success');
+			  alert('Recovery success');
 		  }
 		  else {
-			  alert('Login fail');
+			  alert('Recovery fail');
 		  }
         }
       return (
@@ -48,20 +45,16 @@ class Login extends Component {
                         <div className="col-md-12 col-md-offset-3">
                             <div className="panel panel-default">
                                 <div className="panel-heading">
-                                    <h3 className="panel-title" style={{'text-align': 'center'}}>Please Sign In</h3>
+                                    <h3 className="panel-title" style={{'text-align': 'center'}}>Input Your Email and We Will Send You Your Password</h3>
                                 </div>
                                 <div className="panel-body">
-									<form accept-charset="UTF-8" role="form" onSubmit={attemptLogin}>
+									<form accept-charset="UTF-8" role="form" onSubmit={attemptRecovery}>
 										<fieldset>
 											<div className="form-group">
-												<input className="form-control" placeholder="E-mail" name="email" type="text" onChange={this.handleEmailChange.bind(this)}/>
-											</div>
-											<div className="form-group">
-												<input className="form-control" placeholder="Password" name="password" type="password" onChange={this.handlePasswordChange.bind(this)}/>
-											</div>											
-											<button className="btn btn-lg btn-primary btn-block" type="submit" >Login</button>
-											<a href="/Recovery" className="btn btn-sm btn-secondary btn-block" type="submit">Forgot Your Password? Click Here!</a>
-											<a href="/Reg" className="btn btn-sm btn-secondary btn-block" type="submit">Don't have an account yet? Register Here!</a>
+												<input className="form-control" placeholder="Your E-Mail Address" name="email" type="text" onChange={this.handleEmailChange.bind(this)}/>
+											</div>							
+											<button className="btn btn-lg btn-primary btn-block" type="submit" >Recover Password</button>
+											<a href="/Login" className="btn btn-sm btn-secondary btn-block">Not the page you were looking for? Click here to go back</a>
 											
 										</fieldset>
 									</form>
@@ -75,4 +68,4 @@ class Login extends Component {
 );}}
 
 
-export default Login;
+export default Recovery;
