@@ -52,7 +52,7 @@ class Login extends Component {
                         <div className="col-md-12 col-md-offset-3">
                             <div className="panel panel-default">
                                 <div className="panel-heading">
-                                    <h3 className="panel-title" style={{'text-align': 'center'}}>Please Sign In</h3>
+                                    <a href="/Reg"><h3 className="panel-title" style={{'text-align': 'center'}}>Please Sign In If You Have An Account. If It's Your First Time, Register Here!</h3></a>
                                 </div>
                                 <div className="panel-body">
 										<fieldset>
@@ -63,8 +63,7 @@ class Login extends Component {
 												<input className="form-control" placeholder="Password" name="password" type="password" onChange={this.handlePasswordChange.bind(this)}/>
 											</div>											
 											<button className="btn btn-lg btn-primary btn-block" type="submit" onClick={this.handleSubmit.bind(this)} >Login</button>
-											<a href="/Recovery" className="btn btn-sm btn-secondary btn-block" type="submit">Forgot Your Password? Click Here!</a>
-											<a href="/Reg" className="btn btn-sm btn-secondary btn-block" type="submit">Don't have an account yet? Register Here!</a>
+											<a href="/Recovery" className="btn btn-sm btn-secondary btn-block">Forgot Your Password? Click Here!</a>
 											
 										</fieldset>
                                 </div>

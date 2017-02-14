@@ -23,8 +23,7 @@ class Reg extends Component {
 	handleLastChange(event) {
 	   this.setState({lastname: event.target.value});
 	}
-  render() {
-	  var attemptRegistration = function() {
+	attemptRegistration() {
 		  if(this.state.email === this.state.emailConfirmation) {
 			  if(this.state.password === this.state.passwordConfirmation) {
 				  fetch('/users/signup', {
@@ -66,6 +65,7 @@ class Reg extends Component {
 			alert('The email addresses you entered did not match. Please try again');
 		}
 	  }
+  render() {
       return (
             <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-0 main">
                 <div className="container">
@@ -76,7 +76,7 @@ class Reg extends Component {
                                     <h3 className="panel-title" style={{'text-align': 'center'}}>Sign Up Here:</h3>
                                 </div>
                                 <div className="panel-body">
-									<form accept-charset="UTF-8" role="form" onSubmit={attemptRegistration}>
+									<form accept-charset="UTF-8" role="form">
 										<fieldset>
 											<div className="form-group">
 												<input className="form-control" placeholder="Your First Name" name="firstname" type="text" onChange={this.handleFirstChange.bind(this)}/>
@@ -102,7 +102,7 @@ class Reg extends Component {
 											  <input className="form-control" placeholder="Confirm Your Password" name="passwordConfirmation" type="password" onChange={this.handlePasswordConfirmation.bind(this)}/>
 											</div>
 											
-											<button className="btn btn-lg btn-primary btn-block" type="submit" >Sign Up</button>
+											<button className="btn btn-lg btn-primary btn-block" onClick={this.attemptRegistration.bind(this)} >Sign Up</button>
 										</fieldset>
 									</form>
                                 </div>

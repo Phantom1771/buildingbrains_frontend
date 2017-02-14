@@ -8,8 +8,7 @@ class Recovery extends Component {
 	 handleEmailChange(event) {
 		this.setState({email: event.target.value});
 	}
-  render() {
-	  var attemptRecovery = function() {
+	attemptRecovery() {
 		  fetch('/users/forgot', {
 			  method: 'post',
 			  headers: {
@@ -38,6 +37,7 @@ class Recovery extends Component {
 			  alert('Recovery fail');
 		  }
         }
+  render() {
       return (
             <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-0 main">
                 <div className="container">
@@ -48,12 +48,12 @@ class Recovery extends Component {
                                     <h3 className="panel-title" style={{'text-align': 'center'}}>Input Your Email and We Will Send You Your Password</h3>
                                 </div>
                                 <div className="panel-body">
-									<form accept-charset="UTF-8" role="form" onSubmit={attemptRecovery}>
+									<form accept-charset="UTF-8" role="form">
 										<fieldset>
 											<div className="form-group">
 												<input className="form-control" placeholder="Your E-Mail Address" name="email" type="text" onChange={this.handleEmailChange.bind(this)}/>
 											</div>							
-											<button className="btn btn-lg btn-primary btn-block" type="submit" >Recover Password</button>
+											<button className="btn btn-lg btn-primary btn-block" onClick={this.attemptRecovery.bind(this)} >Recover Password</button>
 											<a href="/Login" className="btn btn-sm btn-secondary btn-block">Not the page you were looking for? Click here to go back</a>
 											
 										</fieldset>
