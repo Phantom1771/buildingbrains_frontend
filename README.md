@@ -1,4 +1,4 @@
-#Building Brains
+TO #Building Brains
 
 
 ## Project Structure
@@ -41,4 +41,4 @@ _If you can, add some test cases to ensure your codes work._
 _You do not have to do test, but please explain the expecting functionality of your new-adding codes, which would be very helpful for us to improve the test suites._
 
 
-
+To run server, npm install followed by npm start from the StandaloneHomepage directory
