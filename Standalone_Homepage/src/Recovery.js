@@ -9,15 +9,16 @@ class Recovery extends Component {
 		this.setState({email: event.target.value});
 	}
 	attemptRecovery() {
-		  fetch('/users/forgot', {
+		let data = {
+			email: this.state.email
+		};
+		  fetch('http://localhost:3000/users/forgot', {
 			  method: 'post',
 			  headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			  },
-			  body: JSON.stringify({
-				email: this.state.email,
-			  })
+			  body: data
 			}).then(status)
 			  .then((responseData) => {
 					this.setState({
@@ -29,7 +30,7 @@ class Recovery extends Component {
 			  }).catch(function(error) {
 				console.log('request failed', error)
 			 })
-		  if (this.state.response.result === 1) {
+		  if (this.state.response.result === '0') {
 			  alert('Recovery success');
 			  this.transitionTo("/Login");
 		  }
@@ -48,7 +49,6 @@ class Recovery extends Component {
                                     <h3 className="panel-title" style={{'text-align': 'center'}}>Input Your Email and We Will Send You Your Password</h3>
                                 </div>
                                 <div className="panel-body">
-									<form accept-charset="UTF-8" role="form">
 										<fieldset>
 											<div className="form-group">
 												<input className="form-control" placeholder="Your E-Mail Address" name="email" type="text" onChange={this.handleEmailChange.bind(this)}/>
@@ -57,7 +57,6 @@ class Recovery extends Component {
 											<a href="/Login" className="btn btn-sm btn-secondary btn-block">Not the page you were looking for? Click here to go back</a>
 											
 										</fieldset>
-									</form>
                                 </div>
                             </div>
                         </div>

@@ -26,19 +26,23 @@ class Reg extends Component {
 	attemptRegistration() {
 		  if(this.state.email === this.state.emailConfirmation) {
 			  if(this.state.password === this.state.passwordConfirmation) {
-				  fetch('/users/signup', {
-					  method: 'post',
-					  headers: {
-						'Accept': 'application/json',
-						'Content-Type': 'application/json'
-					  },
-					  body: JSON.stringify({
-						firstname: this.state.firstname,
-						lastname: this.state.lastname,
-						email: this.state.email,
-						password: this.state.password,
-					  })
-					}).then(status)
+				  let data = {
+					  firstname: this.state.firstname,
+					  lastname: this.state.lastname,
+					  email: this.state.email,
+					  password: this.state.password
+				  };
+				  let head = [
+					  'Accept': 'application/json',
+					  'Content-Type': 'application/json'
+				  ];
+				  let requestParams = {
+					  method: 'POST',
+					  headers: head,
+					  body: JSON.stringify(data)
+				  };
+				  fetch('http://localhost:3000/users/signup', requestParams)
+					  .then(status)
 					  .then((responseData) => {
 							this.setState({
 							  response: responseData
@@ -49,7 +53,7 @@ class Reg extends Component {
 					  }).catch(function(error) {
 						console.log('request failed', error)
 					 })
-				  if (this.state.response.result === 1) {
+				  if (this.state.response.result === '0') {
 					  alert('Resgistration success');
 					  this.transitionTo("/Home");
 				  }
@@ -76,7 +80,7 @@ class Reg extends Component {
                                     <h3 className="panel-title" style={{'text-align': 'center'}}>Sign Up Here:</h3>
                                 </div>
                                 <div className="panel-body">
-									<form accept-charset="UTF-8" role="form">
+									
 										<fieldset>
 											<div className="form-group">
 												<input className="form-control" placeholder="Your First Name" name="firstname" type="text" onChange={this.handleFirstChange.bind(this)}/>
@@ -104,7 +108,7 @@ class Reg extends Component {
 											
 											<button className="btn btn-lg btn-primary btn-block" onClick={this.attemptRegistration.bind(this)} >Sign Up</button>
 										</fieldset>
-									</form>
+									
                                 </div>
                             </div>
                         </div>

@@ -12,16 +12,17 @@ class Login extends Component {
 	   this.setState({password: event.target.value});
 	}
 	handleSubmit(event){
-		  fetch('/users/login', {
+		let data = {
+					  email: this.state.email,
+					  password: this.state.password
+				  };
+		  fetch('http://localhost:3000/users/login', {
 			  method: 'post',
 			  headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			  },
-			  body: JSON.stringify({
-				email: this.state.email,
-				password: this.state.password,
-			  })
+			  body: JSON.stringify(data)
 			}).then(status)
 			  .then((responseData) => {
 					this.setState({
@@ -33,8 +34,7 @@ class Login extends Component {
 			  }).catch(function(error) {
 				console.log('request failed', error)
 			 })
-			 this.setState({response: {'result': 1}});
-		  if (this.state.response.result === 1) {
+		  if (this.state.response.result === '0') {
 			  alert('Login success');
 			  this.transitionTo("/Home");
 
