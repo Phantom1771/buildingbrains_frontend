@@ -1,0 +1,55 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.jumbotron {
+      background-image: url('../img/Building-Brains.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      padding-top: 10%;
+      padding-bottom: 15%;
+    }
+
+.jumbotron h2{
+	color: #81D742;
+	text-shadow:
+   		-1.4px -1.4px 0 #000,  
+    	1.4px -1.4px 0 #000,
+    	-1.4px 1.4px 0 #000,
+     	1.4px 1.4px 0 #000;
+}
+
+.thumbnail{
+	font-size: 90%;
+	padding-top: 5%;
+}
+
+.navbar-brand{
+	padding-top: 0%
+}
+
+a i{
+	color: #81D742;
+	margin: 2%;
+}
+
+a{
+	margin: 2%;
+}
+
+i{
+	color: #81D742;
+}
+
+
+
+
+
+
+
+
+
+

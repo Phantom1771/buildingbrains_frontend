@@ -32,10 +32,10 @@ class Reg extends Component {
 					  email: this.state.email,
 					  password: this.state.password
 				  };
-				  let head = [
+				  let head = {
 					  'Accept': 'application/json',
 					  'Content-Type': 'application/json'
-				  ];
+				  };
 				  let requestParams = {
 					  method: 'POST',
 					  headers: head,
@@ -80,7 +80,7 @@ class Reg extends Component {
                                     <h3 className="panel-title" style={{'text-align': 'center'}}>Sign Up Here:</h3>
                                 </div>
                                 <div className="panel-body">
-									
+
 										<fieldset>
 											<div className="form-group">
 												<input className="form-control" placeholder="Your First Name" name="firstname" type="text" onChange={this.handleFirstChange.bind(this)}/>
@@ -93,22 +93,22 @@ class Reg extends Component {
 											<div className="form-group">
 											  <input className="form-control" placeholder="Your E-Mail Address" name="email" type="text" onChange={this.handleEmailChange.bind(this)}/>
 											</div>
-											
+
 											<div className="form-group">
 											  <input className="form-control" placeholder="Confirm Your E-Mail Address" name="emailConfirmation" type="text" onChange={this.handleEmailConfirmation.bind(this)}/>
 											</div>
-											
+
 											<div className="form-group">
 												 <input className="form-control" placeholder="Your Password" name="password" type="password" onChange={this.handlePasswordChange.bind(this)}/>
 											</div>
-											
+
 											<div className="form-group">
 											  <input className="form-control" placeholder="Confirm Your Password" name="passwordConfirmation" type="password" onChange={this.handlePasswordConfirmation.bind(this)}/>
 											</div>
-											
+
 											<button className="btn btn-lg btn-primary btn-block" onClick={this.attemptRegistration.bind(this)} >Sign Up</button>
 										</fieldset>
-									
+
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@ class Reg extends Component {
             </div>
         )
     }
-    
+
 }
 
 
