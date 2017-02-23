@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Reg extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {firstname: '', lastname: '', email: '', emailConfirmation: '', password: '', passwordConfirmation: '',response: ''};
+		this.state = {firstname: '', lastname: '', email: '', emailConfirmation: '', password: '', passwordConfirmation: '',result: ''};
 	 }
 	 handleEmailChange(event) {
 		this.setState({email: event.target.value});
@@ -32,10 +32,10 @@ class Reg extends Component {
 					  email: this.state.email,
 					  password: this.state.password
 				  };
-				  let head = [
+				  let head = {
 					  'Accept': 'application/json',
 					  'Content-Type': 'application/json'
-				  ];
+				  };
 				  let requestParams = {
 					  method: 'POST',
 					  headers: head,
@@ -43,23 +43,20 @@ class Reg extends Component {
 				  };
 				  fetch('http://localhost:3000/users/signup', requestParams)
 					  .then(status)
-					  .then((responseData) => {
-							this.setState({
-							  response: responseData
-							});
-						})
-					  .then(function(responseData) {
-						console.log('request succeeded with json response', responseData)
-					  }).catch(function(error) {
-						console.log('request failed', error)
-					 })
-				  if (this.state.response.result === '0') {
-					  alert('Resgistration success');
-					  this.transitionTo("/Home");
-				  }
-				  else {
-					  alert('Registration fail');
-				  }
+					  .then((response) => response.json())
+					  .then(json => {
+						console.log(json);
+						this.setState({
+						  result: json.result
+						});
+						 if (this.state.result === 0) {
+							  window.location = "/Home";
+
+						  }
+						  else {
+							  alert('Unable to register with the given credentials. Please try again');
+						  }
+					  })        
 			  }
 			else {
 				alert('The passwords you entered did not match. Please try again');
@@ -74,7 +71,7 @@ class Reg extends Component {
             <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-0 main">
                 <div className="container">
                     <div className="row vertical-offset-100">
-                        <div className="col-md-12 col-md-offset-3">
+                        <div className="col-md-8 col-md-offset-3">
                             <div className="panel panel-default">
                                 <div className="panel-heading">
                                     <h3 className="panel-title" style={{'text-align': 'center'}}>Sign Up Here:</h3>

@@ -30,9 +30,8 @@ class Recovery extends Component {
 			  }).catch(function(error) {
 				console.log('request failed', error)
 			 })
-		  if (this.state.response.result === '0') {
-			  alert('Recovery success');
-			  this.transitionTo("/Login");
+		  if (this.state.response.result === 0) {
+			  window.location = "/Login";
 		  }
 		  else {
 			  alert('Recovery fail');
@@ -43,7 +42,7 @@ class Recovery extends Component {
             <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-0 main">
                 <div className="container">
                     <div className="row vertical-offset-100">
-                        <div className="col-md-12 col-md-offset-3">
+                        <div className="col-md-8 col-md-offset-3">
                             <div className="panel panel-default">
                                 <div className="panel-heading">
                                     <h3 className="panel-title" style={{'text-align': 'center'}}>Input Your Email and We Will Send You Your Password</h3>
