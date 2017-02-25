@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Auth from './Auth.js';
 
 class Reg extends Component {
 	constructor(props) {
@@ -24,40 +25,10 @@ class Reg extends Component {
 	   this.setState({lastname: event.target.value});
 	}
 	attemptRegistration() {
-		  if(this.state.email === this.state.emailConfirmation) {
-			  if(this.state.password === this.state.passwordConfirmation) {
-				  let data = {
-					  firstname: this.state.firstname,
-					  lastname: this.state.lastname,
-					  email: this.state.email,
-					  password: this.state.password
-				  };
-				  let head = {
-					  'Accept': 'application/json',
-					  'Content-Type': 'application/json'
-				  };
-				  let requestParams = {
-					  method: 'POST',
-					  headers: head,
-					  body: JSON.stringify(data)
-				  };
-				  fetch('http://localhost:3000/users/signup', requestParams)
-					  .then(status)
-					  .then((response) => response.json())
-					  .then(json => {
-						console.log(json);
-						this.setState({
-						  result: json.result
-						});
-						 if (this.state.result === 0) {
-							  window.location = "/Home";
-
-						  }
-						  else {
-							  alert('Unable to register with the given credentials. Please try again');
-						  }
-					  })        
-			  }
+		if(this.state.email === this.state.emailConfirmation) {
+			if(this.state.password === this.state.passwordConfirmation) {
+				Auth.register(this.state.firstname,this.state.lastname,this.state.email,this.state.password);
+			}
 			else {
 				alert('The passwords you entered did not match. Please try again');
 			}
