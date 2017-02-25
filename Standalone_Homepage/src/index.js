@@ -1,9 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import { Router, hashHistory } from 'react-router'
+import ReactDOM from 'react-dom'
+import React from 'react'
+const rootRoute = {
+  childRoutes: [ {
+    path: '/',
+    component: require('./components/App').default,
+    childRoutes: [
+      require('./routes/Login'),
+      require('./routes/Reg')
+    ]
+  } ]
+}
 
-ReactDOM.render(
-  <App />,
+ReactDOM.render((
+   <Router 
+   history={hashHistory} 
+   routes={rootRoute}/>
+),
   document.getElementById('root')
 );

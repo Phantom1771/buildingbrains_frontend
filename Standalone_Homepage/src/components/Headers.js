@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router';
 class Headers extends Component {
      render() {
         return (
@@ -12,11 +12,11 @@ class Headers extends Component {
 						<span className="icon-bar"></span>
 						<span className="icon-bar"></span>
 					</button>
-					<a className="navbar-brand" href="/Home">Building Brains</a>
+					<Link className="navbar-brand" to="/">Building Brains</Link>
 				</div>
 				<div id="navbar" className="navbar-collapse collapse">
 				<ul className="nav navbar-nav navbar-right">
-					<li><a href="/Login">Login</a></li>
+					<li><Link to="/login">Login</Link></li>
 				</ul>
 				</div>
 			</div>
