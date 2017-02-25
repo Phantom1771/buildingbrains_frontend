@@ -1,43 +1,60 @@
 import React, { Component } from 'react';
 
 class Device extends Component {
+	getDeviceState(deviceID){
+		  let url = 'http://localhost:3000/devices/' + deviceId;
+		  let head = {
+			  'Accept': 'application/json',
+			  'Content-Type': 'application/json',
+		      'Authentication': localStorage.token
+		  };
+		  fetch(url, {
+			  method: 'get',
+			  headers: head,
+			}).then(status)
+			  .then((response) => response.json())
+			  .then(json => {
+				console.log(json);
+				if (json.result === 0) {
+					  return json.device;
+			    }
+				else {
+					  alert('Something went wrong when trying to access the device. Please try again.');
+					  return -1;
+				}
+			  })        
+	}
+	displayDeviceStatus(statusJSON) {
+		if(statusJSON != -1)
+		{
+			var deviceData = Object.keys(statusJSON.state).map((k, idx) => {
+				//SWITCH STATEMENT HERE BASED ON statusJSON.params. Change method which device is returned
+				switch(statusJSON.params[k][0]) {
+					case 'int': return 0; //this should be a field that the user can enter any integer
+					case 'percent': return 0; //A slide bar that allows the user to set adjustable based on percentages. 
+					default: return 0; //A drop down that enumerates all of the possible options for that parameter. 
+				}
+               /*return (
+                 <p key={idx}><strong>{k}</strong> - {statusJSON[k]}</p>
+               );*/
+            });
+
+			return (
+					<div className="deviceStatus">
+						<h1> {statusJSON.name} </h1>
+						<h3>{deviceData}</h3>
+					</div>
+				);
+			}
+		else {
+			return (<h3> Something went wrong. Please refresh and try again</h3>);
+		}
+		}
 	
      render() {
-        return (
-             <div className="Home">
-                    <div className="col-md-6 col-md-offset-2">
-                    <div className="Welcome">
-                        <div className="rcorners0">
-                            <div className="text-left pb-5 pl-2 mb-5 ml-5"> 
-                                <h2 > Your Devices: </h2>
-                            </div>
-                        <div class="row justify-content-md-center">
-                                    <div className="col col-lg-2">
-                                    <div className="rcorners2">
-                                        <i className="fa fa-home  fa-10x " aria-hidden="true"></i>
-                                        <p>Rounded corners!</p>
-                                    </div>
-                                    </div>
-
-                                    <div className="col col-lg-2 col-md-offset-2">           
-                                    <div className="rcorners1">
-                                        <i className="fa fa-thermometer-quarter fa-10x " aria-hidden="true"></i>
-                                        <p>Rounded corners!</p>
-                                    </div>
-                                    </div>
-
-                                    <div className="col col-lg-2 col-md-offset-2">
-                                    <div className="rcorners2">
-                                        <i className="fa fa-clock-o  fa-10x " aria-hidden="true"></i>
-                                        <p>Rounded corners!</p>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                </div>
-            </div>
-    );
-  }
+		var status = getDeviceState(DEVICEID);
+		displayDeviceStatus(status);
+     }
+     
 }
 export default Device;
