@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Auth from './Auth.js';
 
 class Login extends Component {
 	constructor(props) {
@@ -12,32 +13,7 @@ class Login extends Component {
 	   this.setState({password: event.target.value});
 	}
 	handleSubmit(event){
-		let data = {
-					  email: this.state.email,
-					  password: this.state.password
-				  };
-		  fetch('http://localhost:3000/users/login', {
-			  method: 'post',
-			  headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			  },
-			  body: JSON.stringify(data)
-			}).then(status)
-			  .then((response) => response.json())
-			  .then(json => {
-				console.log(json);
-				this.setState({
-				  result: json.result
-				});
-				 if (this.state.result === 0) {
-					  window.location = "/Home";
-
-				  }
-				  else {
-					  alert('Unable to login with the given credentials. Please try again');
-				  }
-			  })        
+		Auth.login(this.state.email,this.state.password);		
 	}
   render() {
       return (
