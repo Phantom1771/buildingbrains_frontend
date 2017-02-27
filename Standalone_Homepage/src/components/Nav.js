@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 import NavItem from './NavItem.js'
 class Nav extends Component {
     
@@ -9,10 +10,12 @@ class Nav extends Component {
           <div className="row">
             <div className="col-sm-3  sidebar">
                 <ul className="nav nav-sidebar">
-                    <NavItem to="/" index={true}>  
+                    <li>
+                    <Link to="/" index={true}>  
                     <i className="fa fa-home fa-3x " aria-hidden="true"></i>
                     <p>Home</p>
-                    </NavItem>
+                    </Link>
+                    </li>
                 </ul>
 
                 <ul className="nav nav-sidebar">
