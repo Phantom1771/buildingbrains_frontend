@@ -12,7 +12,11 @@ class App extends Component {
       <div className="App">
         <Headers />
         {isLoggedIn ? <Nav/> : null}
-        {this.props.children || <Home />}
+        <div className="Home">
+          <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> 
+            {this.props.children || <Home />}
+            </div>
+       </div>
       </div>
     )
   }

@@ -8,7 +8,7 @@ class Nav extends Component {
       return (
         <div className="container-fluid">
           <div className="row">
-            <div className="col-sm-3  sidebar">
+            <div className="col-sm-2  sidebar">
                 <ul className="nav nav-sidebar">
                     <li>
                     <Link to="/" index={true}>  
