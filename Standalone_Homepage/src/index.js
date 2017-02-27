@@ -1,4 +1,4 @@
-import { Route, Router, hashHistory } from 'react-router'
+import { Route, Router, browserHistory} from 'react-router'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import Auth from './Auth.js'
@@ -30,9 +30,9 @@ function requireNotAuth(nextState, replace) {
 }
 
 ReactDOM.render((
-   <Router history={hashHistory} >
+   <Router history={browserHistory} >
      <Route path="/" component={App} onEnter={requireAuth}/>
-     
+
      <Route path="/Devices" component={App} onEnter={requireAuth}/>
      <Route path="/Stats" component={App} onEnter={requireAuth}/>
      <Route path="/Settings" component={App} onEnter={requireAuth}/>
