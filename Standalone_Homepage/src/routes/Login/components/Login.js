@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Auth from './Auth.js';
+import { Link, IndexLink, withRouter } from 'react-router'
+import Auth from '../../../Auth.js';
 
 class Login extends Component {
 	constructor(props) {
@@ -16,6 +17,10 @@ class Login extends Component {
 		Auth.login(this.state.email,this.state.password);		
 	}
   render() {
+	  if(Auth.loggedIn()){
+		  this.transitionTo('/');	
+		  
+	  }
       return (
             <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-0 main">
                 <div className="container">
@@ -23,7 +28,7 @@ class Login extends Component {
                         <div className="col-md-8 col-md-offset-3">
                             <div className="panel panel-default">
                                 <div className="panel-heading">
-                                    <a href="/Reg"><h3 className="panel-title" style={{'text-align': 'center'}}>Please Sign In If You Have An Account. If It's Your First Time, Register Here!</h3></a>
+                                    <Link to="/Reg"><h3 className="panel-title" style={{'text-align': 'center'}}>Please Sign In If You Have An Account. If It's Your First Time, Register Here!</h3></Link>
                                 </div>
                                 <div className="panel-body">
 										<fieldset>

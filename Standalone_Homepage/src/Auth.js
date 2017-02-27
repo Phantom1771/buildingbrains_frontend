@@ -17,7 +17,7 @@ module.exports = {
 			console.log(json);
 			if (json.result === 0) {
 				 localStorage.token = json.token;
-				 this.transitionTo('/Home');	 
+				 this.transitionTo('/');	 
 			}
 			else {
 			  alert('Unable to login with the given credentials. Please try again');
@@ -47,7 +47,7 @@ module.exports = {
 	 		console.log(json);
 			if (json.result === 0) {
 				localStorage.token = json.token;
-				this.transitionTo("/Home");
+				this.transitionTo("/");
 			}
 			else {
 			  alert('Unable to register with the given credentials. Please try again');
@@ -63,6 +63,7 @@ module.exports = {
   },
 
   loggedIn() {
+		//return true
     return !!localStorage.token
   },
 }
