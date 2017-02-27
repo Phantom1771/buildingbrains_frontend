@@ -131,3 +131,23 @@ body {
   top:110px;
 }
 
+
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+  color: Black;
+}
+.nav-sidebar > li{
+  min-height: 40px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #72BB52;
+}
+.nav-sidebar{
+  margin-bottom: 0px;
+}
+a{
+color: black;
+}

@@ -38,9 +38,6 @@ class Reg extends Component {
 		}
 	  }
   render() {
-	  if(Auth.loggedIn){
-		  this.transitionTo('/');	
-	  }
       return (
             <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-0 main">
                 <div className="container">

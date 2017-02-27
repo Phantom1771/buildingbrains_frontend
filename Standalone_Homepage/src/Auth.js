@@ -63,8 +63,8 @@ module.exports = {
   },
 
   loggedIn() {
-		//return true
-    return !!localStorage.token
+		return true
+    //return !!localStorage.token
   },
 }
 

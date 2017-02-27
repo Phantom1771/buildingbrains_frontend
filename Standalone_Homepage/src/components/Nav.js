@@ -7,7 +7,7 @@ class Nav extends Component {
       return (
         <div className="container-fluid">
           <div className="row">
-            <div className="col-sm-3 col-md-2 sidebar">
+            <div className="col-sm-3  sidebar">
                 <ul className="nav nav-sidebar">
                     <NavItem to="/" index={true}>  
                     <i className="fa fa-home fa-3x " aria-hidden="true"></i>

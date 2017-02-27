@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <Headers />
-        {isLoggedIn ? <Nav/> : <Login/>}
+        {isLoggedIn ? <Nav/> : null}
         {this.props.children || <Home />}
       </div>
     )
