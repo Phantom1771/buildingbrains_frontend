@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
+import Auth from '../Auth.js';
+
 class Headers extends Component {
      render() {
         return (
@@ -16,7 +18,8 @@ class Headers extends Component {
 				</div>
 				<div id="navbar" className="navbar-collapse collapse">
 				<ul className="nav navbar-nav navbar-right">
-					<li><Link to="/Login">Login</Link></li>
+					
+			    {Auth.loggedIn()?<li><Link onClick={Auth.logout.bind(this)}>Log out</Link></li>:<li><Link to="/Login">Log in</Link></li>}
 				</ul>
 				</div>
 			</div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router'
 
 class Recovery extends Component {
 	constructor(props) {
@@ -53,7 +54,7 @@ class Recovery extends Component {
 												<input className="form-control" placeholder="Your E-Mail Address" name="email" type="text" onChange={this.handleEmailChange.bind(this)}/>
 											</div>							
 											<button className="btn btn-lg btn-primary btn-block" onClick={this.attemptRecovery.bind(this)} >Recover Password</button>
-											<a href="/Login" className="btn btn-sm btn-secondary btn-block">Not the page you were looking for? Click here to go back</a>
+											<Link to="/Login" className="btn btn-sm btn-secondary btn-block">Not the page you were looking for? Click here to go back</Link>
 											
 										</fieldset>
                                 </div>

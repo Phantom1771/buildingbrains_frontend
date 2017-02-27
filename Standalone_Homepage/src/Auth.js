@@ -60,11 +60,16 @@ module.exports = {
 
   logout() {
     delete localStorage.token
+		location.reload();
   },
 
   loggedIn() {
-		return true
-    //return !!localStorage.token
+		//return true
+    return !!localStorage.token
   },
+	forceLoggedIn(){
+		localStorage.token = Math.random().toString(36).substring(7);
+		location.reload();
+	}
 }
 

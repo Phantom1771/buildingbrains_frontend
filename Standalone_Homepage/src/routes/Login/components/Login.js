@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, IndexLink, withRouter } from 'react-router'
+import { Link } from 'react-router'
 import Auth from '../../../Auth.js';
 
 class Login extends Component {
@@ -35,7 +35,8 @@ class Login extends Component {
 												<input className="form-control" placeholder="Password" name="password" type="password" onChange={this.handlePasswordChange.bind(this)}/>
 											</div>											
 											<button className="btn btn-lg btn-primary btn-block" type="submit" onClick={this.handleSubmit.bind(this)} >Login</button>
-											<a href="/Recovery" className="btn btn-sm btn-secondary btn-block">Forgot Your Password? Click Here!</a>
+											<button className="btn btn-lg btn-primary btn-block" type="submit" onClick={Auth.forceLoggedIn.bind(this)} >ForceLogin</button>
+											<Link to="/Recovery" className="btn btn-sm btn-secondary btn-block">Forgot Your Password? Click Here!</Link>
 										</fieldset>
                                 </div>
                             </div>
