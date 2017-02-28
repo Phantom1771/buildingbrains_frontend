@@ -11,7 +11,7 @@ class Nav extends Component {
             <div className="col-sm-2  sidebar">
                 <ul className="nav nav-sidebar">
                     <li>
-                    <Link to="/" index={true}>  
+                    <Link to="/" >  
                     <i className="fa fa-home fa-3x " aria-hidden="true"></i>
                     <p>Home</p>
                     </Link>
