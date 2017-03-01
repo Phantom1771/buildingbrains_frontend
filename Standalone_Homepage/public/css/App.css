@@ -219,3 +219,30 @@ html {
 .nav-sidebar > .active > a{
   color:black;
 }
+
+
+.container-rounded {
+  width: 80%;
+ border-radius: 10px; 
+ border-width: 1px;
+ border-style:solid;
+ box-shadow: 0 0 5px rgba(1, 1, 1, 0.7);
+ background-color: #FFFFFF;
+ padding-top: 10px;
+ margin: 10px;
+ padding-bottom: 20px;
+ padding-right:20px;
+}
+
+.text-left{
+  padding-left: 20px;
+}
+
+label {
+  text-align: center;
+  padding-top: 7px;  
+}
+
+.updateButton{
+  padding-left:38%;
+}

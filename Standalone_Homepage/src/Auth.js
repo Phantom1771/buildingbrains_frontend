@@ -1,10 +1,14 @@
 module.exports = {
+	api(url){
+		return 'http://localhost:4000'.concat(url); 
+	},
+
   login(email, pass) {
 	let data = {
 				  email: email,
 				  password: pass
 				  };
-    fetch('http://localhost:3000/users/login', {
+    fetch(this.api('/users/login'), {
 		method: 'post',
 		headers: {
 			'Accept': 'application/json',
@@ -16,8 +20,8 @@ module.exports = {
 		.then(json => {
 			console.log(json);
 			if (json.result === 0) {
-				 localStorage.token = json.token;
-				 this.transitionTo('/');	 
+				 localStorage.token = json.userToken;
+				 location.reload();
 			}
 			else {
 			  alert('Unable to login with the given credentials. Please try again');
@@ -40,36 +44,140 @@ module.exports = {
 		  headers: head,
 		  body: JSON.stringify(data)
 	   };
-	   fetch('http://localhost:3000/users/signup', requestParams)
+	   fetch(this.api('/users/signup'), requestParams)
 		  .then(status)
 		  .then((response) => response.json())
 		  .then(json => {
 	 		console.log(json);
 			if (json.result === 0) {
-				localStorage.token = json.token;
-				this.transitionTo("/");
+				localStorage.token = json.userToken;
+				location.replace("/");
 			}
 			else {
 			  alert('Unable to register with the given credentials. Please try again');
 			}
 		}) 
   },
+
+	getAccountInfo(){
+		let data = {
+		  userToken: this.getToken() 
+	   }
+		let head = {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+	   };
+		let requestParams = {
+		  method: 'POST',
+		  headers: head,
+		  body: JSON.stringify(data)
+	   };
+		 return fetch(this.api('/users/account'), requestParams)
+		  .then(status)
+			.then((response) => response.json())
+		  .then(json => {
+				return json
+			})
+			
+	},
+
+	updateProfileInfo(first, last){
+		let data = {
+		  firstName: first,
+			lastName: last,
+			userToken: this.getToken() 
+	   }
+		let head = {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+	   };
+		let requestParams = {
+		  method: 'POST',
+		  headers: head,
+		  body: JSON.stringify(data)
+	   }
+		 fetch(this.api('/users/account/profile'), requestParams)
+		  .then(status)
+			.then((response) => response.json())
+		  .then(json => {
+					if(json.result === 0){
+						localStorage.token = json.token;
+						alert("You have successfully updated your profile")
+					}
+			})
+	},
+	updatePassword(pass){
+		let data = {
+			newPassword: pass,
+			userToken: this.getToken() 
+	   }
+		let head = {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+	   };
+		let requestParams = {
+		  method: 'POST',
+		  headers: head,
+		  body: JSON.stringify(data)
+	   }
+		 fetch(this.api('/users/reset'), requestParams)
+		  .then(status)
+			.then((response) => response.json())
+		  .then(json => {
+					if(json.result === 0){
+						localStorage.token = json.passwordResetToken;
+						delete localStorage.token
+						alert("You have successfully updated your password, please re-login")
+						location.reload();
+					}else{
+						alert("update fails because " + json.error)
+					}
+			})
+	},
+
+	attemptRecovery(em) {
+		let data = {
+			email: em 
+		};
+		  fetch(this.api('/users/forgot'), {
+			  method: 'post',
+			  headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			  },
+			  body: JSON.stringify(data)
+			}).then(status)
+			  .then((responseData) => {
+					this.setState({
+					  response: responseData
+					});
+				})
+			  .then(function(responseData) {
+				console.log('request succeeded with json response', responseData)
+			  }).catch(function(error) {
+				console.log('request failed', error)
+			 })
+		  if (this.state.response.result === 0) {
+			  location.reload();
+		  }
+		  else {
+			  alert('Recovery fail');
+		  }
+	},        
+
   getToken() {
     return localStorage.token
   },
 
   logout() {
-    delete localStorage.token
+		delete localStorage.token;
 		location.reload();
   },
 
   loggedIn() {
 		//return true
+		if(localStorage.token === undefined) return false;
     return !!localStorage.token
   },
-	forceLoggedIn(){
-		localStorage.token = Math.random().toString(36).substring(7);
-		location.reload();
-	}
 }
 
