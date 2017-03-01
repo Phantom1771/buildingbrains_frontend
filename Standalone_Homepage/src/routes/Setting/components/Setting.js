@@ -7,7 +7,9 @@ class Setting extends Component {
       this.state={
         email: [],
         first: [],
-        last: []
+        last: [],
+        pass: [],
+        confirm: []
       }
     }
     componentDidMount() {
@@ -28,9 +30,21 @@ class Setting extends Component {
     handleLastChange(event) {
       this.setState({last: event.target.value});
     }
-	
+    handlePassChange(event) {
+      this.setState({pass: event.target.value});
+    }
+    handleConfirmChange(event) {
+      this.setState({confirm: event.target.value});
+    }
     handleProfileSubmit(){
       Auth.updateProfileInfo(this.state.first, this.state.last);
+    }
+    handlePassSubmit(){
+      if(this.state.confirm === this.state.pass){
+        Auth.updatePassword(this.state.confirm);
+      }else{
+        alert("Password doesn't match with the confirm password");
+      }
     }
     render() {
       
@@ -84,7 +98,25 @@ class Setting extends Component {
 
 
           <div className="tab-pane" id="2">
-            <h3>Notice the gap between the content and tab after applying a background color</h3>
+            <br/>
+            <form>
+       
+              <div className="form-group row">
+                <label for="inputPassword3" className="col-sm-2 col-form-label" >New Password</label>
+                <div className="col-sm-4">
+                <input type="password" className="form-control"   onChange={this.handlePassChange.bind(this)}/>
+                </div>
+              </div>
+              <div className="form-group row">
+                <label for="inputPassword3" className="col-sm-2 col-form-label">Confirm New Password</label>
+                <div className="col-sm-4">
+                <input type="password" className="form-control"   onChange={this.handleConfirmChange.bind(this)} />
+                </div>
+              </div>
+            </form>
+            <div align ="left" className="updateButton">
+              <button className="btn btn-lg btn-primary  " type="submit" onClick={this.handlePassSubmit.bind(this)} >Update</button>
+            </div>
           </div>
 
 

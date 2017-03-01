@@ -106,6 +106,32 @@ module.exports = {
 					}
 			})
 	},
+	updatePassword(pass){
+		let data = {
+			newPassword: pass,
+			userToken: this.getToken() 
+	   }
+		let head = {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+	   };
+		let requestParams = {
+		  method: 'POST',
+		  headers: head,
+		  body: JSON.stringify(data)
+	   }
+		 fetch(this.api('/users/reset'), requestParams)
+		  .then(status)
+			.then((response) => response.json())
+		  .then(json => {
+					if(json.result === 0){
+						localStorage.token = json.passwordResetToken;
+						alert("You have successfully updated your password")
+					}else{
+						alert("update fails because " + json.error)
+					}
+			})
+	},
 
 
 
