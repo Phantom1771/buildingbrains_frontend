@@ -126,7 +126,9 @@ module.exports = {
 		  .then(json => {
 					if(json.result === 0){
 						localStorage.token = json.passwordResetToken;
-						alert("You have successfully updated your password")
+						delete localStorage.token
+						alert("You have successfully updated your password, please re-login")
+						location.reload();
 					}else{
 						alert("update fails because " + json.error)
 					}
