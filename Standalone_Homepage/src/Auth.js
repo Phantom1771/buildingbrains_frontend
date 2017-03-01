@@ -20,7 +20,7 @@ module.exports = {
 		.then(json => {
 			console.log(json);
 			if (json.result === 0) {
-				 localStorage.token = json.usertoken;
+				 localStorage.token = json.userToken;
 				 location.reload();
 			}
 			else {
@@ -50,7 +50,7 @@ module.exports = {
 		  .then(json => {
 	 		console.log(json);
 			if (json.result === 0) {
-				localStorage.token = json.token;
+				localStorage.token = json.userToken;
 				location.replace("/");
 			}
 			else {
@@ -81,6 +81,31 @@ module.exports = {
 			
 	},
 
+	updateProfileInfo(first, last){
+		let data = {
+		  firstName: first,
+			lastName: last,
+			userToken: this.getToken() 
+	   }
+		let head = {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+	   };
+		let requestParams = {
+		  method: 'POST',
+		  headers: head,
+		  body: JSON.stringify(data)
+	   }
+		 fetch(this.api('/users/account/profile'), requestParams)
+		  .then(status)
+			.then((response) => response.json())
+		  .then(json => {
+					if(json.result === 0){
+						localStorage.token = json.token;
+						alert("You have successfully updated your profile")
+					}
+			})
+	},
 
 
 
@@ -95,6 +120,7 @@ module.exports = {
 
   loggedIn() {
 		//return true
+		if(localStorage.token === undefined) return false;
     return !!localStorage.token
   },
 }
