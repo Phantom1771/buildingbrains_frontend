@@ -133,7 +133,35 @@ module.exports = {
 			})
 	},
 
-
+	attemptRecovery(em) {
+		let data = {
+			email: em 
+		};
+		  fetch(this.api('/users/forgot'), {
+			  method: 'post',
+			  headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			  },
+			  body: JSON.stringify(data)
+			}).then(status)
+			  .then((responseData) => {
+					this.setState({
+					  response: responseData
+					});
+				})
+			  .then(function(responseData) {
+				console.log('request succeeded with json response', responseData)
+			  }).catch(function(error) {
+				console.log('request failed', error)
+			 })
+		  if (this.state.response.result === 0) {
+			  location.reload();
+		  }
+		  else {
+			  alert('Recovery fail');
+		  }
+	},        
 
   getToken() {
     return localStorage.token
