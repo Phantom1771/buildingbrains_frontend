@@ -46,6 +46,12 @@ class Setting extends Component {
         alert("Password doesn't match with the confirm password");
       }
     }
+
+    handleDeleteUser(){
+      if(confirm("Are you sure you want to DELETE your account?")){
+        Auth.deleteAccount();
+      }
+    }
     render() {
       
       
@@ -59,6 +65,9 @@ class Setting extends Component {
             </li>
             <li>
               <a href="#2" data-toggle="tab">Change Password</a>
+            </li>
+            <li>
+              <a href="#3" data-toggle="tab">Delete Account </a>
             </li>
           </ul>
         </div>
@@ -88,7 +97,7 @@ class Setting extends Component {
                 </div>
               </div>
             </form>
-            <div align ="left" className="updateButton">
+            <div align="left" className="updateButton">
               <button className="btn btn-lg btn-primary  " type="submit" onClick={this.handleProfileSubmit.bind(this)} >Update</button>
             </div>
           </div>
@@ -114,15 +123,16 @@ class Setting extends Component {
                 </div>
               </div>
             </form>
-            <div align ="left" className="updateButton">
+            <div align="left" className="updateButton">
               <button className="btn btn-lg btn-primary  " type="submit" onClick={this.handlePassSubmit.bind(this)} >Update</button>
             </div>
           </div>
-
-
-
-
-
+            <div className="tab-pane" id="3">
+            <br/> 
+            <div align="left" className="updateButton">
+              <button className="btn btn-lg btn-danger " type="submit" onClick={this.handleDeleteUser.bind(this)} >Delete Account</button>
+            </div>
+            </div>
         </div>
 			</div>
 
