@@ -5,7 +5,6 @@ import Auth from './Auth.js'
 
 
 import App from './components/App.js'
-import Home from './components/Home.js'
 
 import Reg from './routes/Reg/components/Reg.js'
 import Recovery from'./routes/Recovery/components/Recovery.js'

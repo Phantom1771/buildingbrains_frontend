@@ -7,8 +7,8 @@ class Nav extends Component {
     render() {
       return (
         <div className="container-fluid">
-          <div className="row">
-            <div className="col-sm-2  sidebar">
+        <div className="row">
+        <div className="col-sm-2  sidebar">
                 <ul className="nav nav-sidebar">
                     <li>
                     <Link to="/" >  
@@ -46,14 +46,9 @@ class Nav extends Component {
                     </NavItem>
                 </ul>
                   
-              </div>
-              </div>
-              </div>
-
-
-
-
-
+         </div>
+         </div>
+         </div>
         );
       }
 }
