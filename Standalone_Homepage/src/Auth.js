@@ -1,3 +1,4 @@
+'use strict';
 module.exports = {
     api(url) {
         return 'http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000'.concat(url);
@@ -15,7 +16,7 @@ module.exports = {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
-            }).then(status)
+            })
             .then((response) => response.json())
             .then(json => {
                 console.log(json);
@@ -43,8 +44,7 @@ module.exports = {
             headers: head,
             body: JSON.stringify(data)
         };
-        fetch(this.api('/users/signup'), requestParams)
-            .then(status)
+        return fetch(this.api('/users/signup'), requestParams)
             .then((response) => response.json())
             .then(json => {
                 console.log(json);
@@ -54,6 +54,7 @@ module.exports = {
                 } else {
                     alert('Unable to register with the given credentials. Please try again');
                 }
+                return json
             })
     },
 
@@ -68,7 +69,6 @@ module.exports = {
             headers: head
         };
         return fetch(this.api('/users/account'), requestParams)
-            .then(status)
             .then((response) => response.json())
             .then(json => {
                 return json
@@ -91,8 +91,7 @@ module.exports = {
             headers: head,
             body: JSON.stringify(data)
         }
-        fetch(this.api('/users/account/profile'), requestParams)
-            .then(status)
+        return fetch(this.api('/users/account/profile'), requestParams)
             .then((response) => response.json())
             .then(json => {
                 if (json.result === 0) {
@@ -114,8 +113,7 @@ module.exports = {
             headers: head,
             body: JSON.stringify(data)
         }
-        fetch(this.api('/users/reset'), requestParams)
-            .then(status)
+        return fetch(this.api('/users/reset'), requestParams)
             .then((response) => response.json())
             .then(json => {
                 if (json.result === 0) {
@@ -134,15 +132,15 @@ module.exports = {
         }
         let head = {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'x-access-token': this.getToken()
         };
         let requestParams = {
             method: 'POST',
             headers: head,
             body: JSON.stringify(data)
         }
-        fetch(this.api('/users/account/delete'), requestParams)
-            .then(status)
+        return fetch(this.api('/users/account/delete'), requestParams)
             .then((response) => response.json())
             .then(json => {
                 if (json.result === 0) {
@@ -150,20 +148,21 @@ module.exports = {
                     alert("You have successfully deleted your profile")
                     location.reload();
                 }
+                return json;
             })
     },
     attemptRecovery(em) {
         let data = {
             email: em
         };
-        fetch(this.api('/users/forgot'), {
+        return fetch(this.api('/users/forgot'), {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
-            }).then(status)
+            })
             .then((responseData) => {
                 this.setState({
                     response: responseData
