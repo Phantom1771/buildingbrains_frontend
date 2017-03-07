@@ -2,17 +2,6 @@ var Auth = require("../src/Auth.js")
 var assert = require("assert");
 var mlog = require("mocha-logger");
  
-var AWSAddress = "http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000"
-var loginUrl = "http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000/users/login"
-var signupUrl = "http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000/users/signup"
-var forgetUrl = "http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000/users/forgot"
-var resetUrl = "http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000/users/reset"
-var accountUrl= "http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000/users/account"
-var profileUrl= "http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000/users/profile"
-var passwordUrl= "http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000/users/password"
-var deleteUrl= "http://ec2-52-36-226-213.us-west-2.compute.amazonaws.com:8000/users/delete"
-
-
 
 global.location = [];
 global.location.reload = function() { message = arguments }
@@ -22,23 +11,6 @@ global.alert = function() { message = arguments }
 global.localStorage = [];
 global.localStorage.token = '';
 
-/**
- * 
- * Auth.api() 
- * 
- */
-describe('the api function gives the correct request address',
-    () => {
-        it('should return the correct request address', 
-            () => {
-                assert.equal(AWSAddress, Auth.api(""))
-        })
-        it('should return the correct address for login',
-            () => {
-                assert.equal(loginUrl, Auth.api("/users/login"))
-            }
-        )
-})
 
 /**
  * 
@@ -81,11 +53,77 @@ describe('the register API testing: ',
         })
 })
 
-describe('the register API testing: ',
+
+
+describe('Login Testing:',
+    () => {
+        var temp = localStorage.token
+        it('should login with correct account and password', 
+            () => {
+                return Auth.login("test@oath.pl","test@pass").then(
+                    json => {
+                        assert(!json.result)
+                    }
+                )
+            }
+        )
+    }
+ )
+
+/**
+ * Route: http://0.0.0.0:0000/users/account/password
+ * HTTP Verb: POST
+ * Authentication: Auth Header JSON req: {password: "xxx"}
+ * JSON res: {result: 0/1, error: "xxx"}
+ */
+describe('Password Update:',
+    () => {
+        var temp;
+        it('should update the password with correct token', 
+            () => {
+                temp = localStorage.token
+                return Auth.updatePassword("123456789").then(
+                    json => {
+                        assert(json.result === 0)
+                    }
+                )
+            }
+        )
+        it('should not update the password with a wrong token', 
+            () => {
+                localStorage.token = "12324"
+                return Auth.updatePassword("123456789").then(
+                    json => {
+                        localStorage.token = temp
+                        assert(json.result === 1)
+                    }
+                )
+            }
+        )
+        it('should not update the password if it is too short', 
+            () => {
+                return Auth.updatePassword("12").then(
+                    json => {
+                        assert(json.result === 1)
+                    }
+                )
+            }
+        )
+        
+    }
+)
+
+
+/**
+ * Route: http://0.0.0.0:0000/users/account/delete
+ * HTTP Verb: POST
+ * Authentication: Auth Header JSON req: {}
+ * JSON res: {result: 0/1, error: "xxx"}  
+ */
+describe('the delete API testing: ',
     () => {
         it('should delete with correct input', 
             () => {
-                global.alert = function() { message = arguments }
                 return Auth.deleteAccount().then(
                     json => {
                         assert(!json.result)
@@ -94,7 +132,6 @@ describe('the register API testing: ',
         })
         it('should not delete with same input', 
             () => {
-                global.alert = function() { message = arguments }
                 return Auth.deleteAccount().then(
                     json => {
                         assert(json.result)

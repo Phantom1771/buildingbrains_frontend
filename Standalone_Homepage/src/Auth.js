@@ -9,7 +9,7 @@ module.exports = {
             email: email,
             password: pass
         };
-        fetch(this.api('/users/login'), {
+        return fetch(this.api('/users/login'), {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
@@ -26,6 +26,7 @@ module.exports = {
                 } else {
                     alert('Unable to login with the given credentials. Please try again');
                 }
+                return json
             })
     },
     register(firstname, lastname, email, pass) {
@@ -123,6 +124,7 @@ module.exports = {
                 } else {
                     alert("update fails because " + json.error)
                 }
+                return json
             })
     },
 
