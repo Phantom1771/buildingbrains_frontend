@@ -60,6 +60,15 @@ describe('the register API testing: ',
                     }
                 )
         })
+        it('should not register with incorrect input', 
+            () => {
+                global.location.reload = function() { message = arguments }
+                return Auth.register("kk", "kk", "kk", "kk").then(
+                    json => {
+                        assert(json.result)
+                    }
+                )
+        })
         it('should not register with same', 
             () => {
                 global.location.reload = function() { message = arguments }
