@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Auth from '../../../Auth.js';
+import Nav from '../../../components/Nav.js';
+import Headers from '../../../components/Headers.js';
 
 var Modal = require('react-modal');
 const customStyles = {
@@ -16,13 +18,20 @@ const customStyles = {
 class DeviceAdder extends Component {
 	 constructor(props) {
 		super(props);
-		this.state = {modalOpen: false, deviceName: '', deviceID: ''};
+		this.state = {modalOpen: false, deviceName: '', deviceID: '', deviceList: ''};
 	 }
 	 displayDevices(nearbyDevices) {
-		 var deviceData = Object.keys(nearbyDevices).map((k, idx) => {
+		 //console.log(nearbyDevices);
+		 
+		 /*var deviceData = Object.keys(nearbyDevices).map((k, idx) => {
 			 return (<button className="btn btn-sm btn-secondary btn-block" onClick={this.openDeviceModal.bind(this,nearbyDevices[k].id)}> nearbyDevices[k].name </button>);
 		 });
 		 return (deviceData);
+		 */
+		 for(var i=0;i<nearbyDevices.length;i++) {
+			 var dev = nearbyDevices[i];
+			 return (<button className="btn btn-sm btn-secondary btn-block" onClick={this.openDeviceModal.bind(this,dev._id)}> {dev.link} </button>);
+		 }
 	 }
 	 openDeviceModal(deviceID) {
 		 this.setState({modalOpen: true});
@@ -30,7 +39,7 @@ class DeviceAdder extends Component {
 	 }
 	 registerDevice() {
 		 let token = Auth.getToken();
-		 let hubID = Auth.getHub(token);
+		 let hubID = Auth.getHubID();
 		 let deviceID = this.state.deviceID;
 		 let deviceName = this.state.deviceName;
 		 let head = {
@@ -50,9 +59,9 @@ class DeviceAdder extends Component {
 			}).then(status)
 			  .then((response) => response.json())
 			  .then(json => {
-				console.log(json);
 				if (json.result === 0) {
 					  alert('Device successfully registered to your hub');
+					  //redirect here back to devices page
 			    }
 				else {
 					  alert('Something went wrong when trying to register the device. Please try again.');
@@ -66,7 +75,7 @@ class DeviceAdder extends Component {
 	 }
 	 getNearbyDevices() {
 		 let token = Auth.getToken();
-		  let hubID = Auth.getHub(token);
+		  let hubID = Auth.getHubID();
 		  let url = 'http://localhost:3000/devices/nearby';
 		  let head = {
 			  'Accept': 'application/json',
@@ -83,9 +92,10 @@ class DeviceAdder extends Component {
 			}).then(status)
 			  .then((response) => response.json())
 			  .then(json => {
-				console.log(json);
+				//console.log(json);
 				if (json.result === 0) {
-					  this.displayDevices(json.devices);
+					//return this.displayDevices(json.devices);
+					this.setState({deviceList: json.devices});
 			    }
 				else {
 					  alert('Something went wrong when retrieving nearby devices. Please try again.');
@@ -98,28 +108,34 @@ class DeviceAdder extends Component {
 	    this.refs.subtitle.style.color = '#f00';
 	 }
 	 render() {
-		var nearbyDevices = this.getNearbyDevices();
+		this.getNearbyDevices();
+		var nearbyDevices = this.displayDevices(this.state.deviceList);	
+		if(!nearbyDevices) {
+			nearbyDevices=(<div className="text-center pb-5 pl-2 mb-5 ml-5"> <h2> No nearby devices found. Click refresh to try again </h2></div>);
+		}
 		return (
              <div className="DeviceAdder">
-                    <div className="col-md-6 col-md-offset-2">
-							<div className="rcorners0">
-								<div className="text-center pb-5 pl-2 mb-5 ml-5"> 
-									<h2 > Select the Device You Want To Add From The List</h2>
-								</div>
-								<div class="row justify-content-md-center">
-									{nearbyDevices}
-									<Modal isOpen={this.state.modalOpen} onAfterOpen={this.afterOpenModal} style={customStyles} contentLabel="Name Your Device" >
-							          <h2 ref="subtitle">Please Enter a Name for Your Device</h2>
-							          <form>
-										<div className="form-group">
-											<input className="form-control" placeholder="Name for Your Device" name="devicename" type="text" onBlur={this.handleName.bind(this)}/>
-										</div>
-							            <button onClick={this.registerDevice.bind(this)}>Register Device With This Name</button>
-							          </form>
-							        </Modal>
-								</div>
+				<Headers />
+				<Nav />
+                <div className="col-md-6 col-md-offset-4">
+						<div className="rcorners0">
+							<div className="text-center pb-5 pl-2 mb-5 ml-5"> 
+								<h1 > Select the Device You Want To Add From The List</h1>
 							</div>
-					</div>
+							<div class="row justify-content-md-center">
+								{nearbyDevices}
+								<Modal isOpen={this.state.modalOpen} onAfterOpen={this.afterOpenModal} style={customStyles} contentLabel="Name Your Device" >
+						          <h2>Please Enter a Name for Your Device</h2>
+						          <form>
+									<div className="form-group">
+										<input className="form-control" placeholder="Name for Your Device" name="devicename" type="text" onBlur={this.handleName.bind(this)}/>
+									</div>
+						            <button onClick={this.registerDevice.bind(this)}>Register Device With This Name</button>
+						          </form>
+						        </Modal>
+							</div>
+						</div>
+				</div>
             </div>
     );
     

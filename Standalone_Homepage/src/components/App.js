@@ -10,13 +10,14 @@ import DeviceAdder from '../routes/DeviceAdder/components/DeviceAdder.js';
 class App extends Component {
   render() {
     const isLoggedIn = Auth.loggedIn();
+    console.log(isLoggedIn);
     return (
       <div className="App">
         <Headers />
         {isLoggedIn ? <Nav/> : null}
         <div className="Home">
           <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> 
-            {this.props.children || <Devices />}
+            {this.props.children || <Home />}
             </div>
        </div>
       </div>

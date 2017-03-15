@@ -130,9 +130,6 @@ body {
   top:110px;
 }
 
-<<<<<<< HEAD
-=======
-
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
@@ -159,18 +156,7 @@ body {
   padding-top:0px;
 }
 
-html { 
-  background: url(../img/home.jpg); 
 
-   background-repeat:no-repeat;
-
-   background-size:cover;
-      width: 100%;
-    height: 100%;
-    background-attachment: fixed;
-}
-
->>>>>>> b21840e41743863d4a1cb7c5209bbd91184df761
 .rcorners1 {
     border-radius: 25px;
     border-color: black;
@@ -221,4 +207,23 @@ html {
 }
 .nav-sidebar > .active > a{
   color:black;
+}
+.Device {
+	margin-top: 7%;
+}
+.Devices {
+	margin-top: 7%;
+}
+.DeviceAdder {
+	margin-top: 7%;
+}
+html { 
+  background: url(../img/home.jpg); 
+
+   background-repeat:no-repeat;
+
+   background-size:cover;
+      width: 100%;
+    height: 100%;
+    background-attachment: fixed;
 }

@@ -16,7 +16,8 @@ module.exports = {
 		.then(json => {
 			console.log(json);
 			if (json.result === 0) {
-				 localStorage.token = json.token;
+				 localStorage.token = json.userToken;
+				 this.getHub(localStorage.token);
 				 this.transitionTo('/');	 
 			}
 			else {
@@ -46,7 +47,8 @@ module.exports = {
 		  .then(json => {
 	 		console.log(json);
 			if (json.result === 0) {
-				localStorage.token = json.token;
+				localStorage.token = json.userToken;
+				this.getHub(localStorage.token);
 				this.transitionTo("/");
 			}
 			else {
@@ -71,12 +73,17 @@ module.exports = {
 		.then(json => {
 			console.log(json);
 			if (json.result === 0) {
-				  return json.hubs[0];
+				var hubID = json.hubs[0];
+				console.log(hubID);
+				localStorage.hubID=hubID;
 			}
 			else {
 			  alert('Unable to get hub for user');
 			}
 		})
+  },
+  getHubID() {
+	  return localStorage.hubID;
   },
 
   logout() {

@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import Auth from '../../../Auth.js';
 import { Link } from 'react-router';
+import Nav from '../../../components/Nav.js';
+import Headers from '../../../components/Headers.js';
 
 class Devices extends Component {
 	 constructor(props) {
 		super(props);
-		this.state = {sortby: ''};
+		this.state = {sortby: '', deviceList: ''};
 	 }
 	 getDevices() {
 		 let token = Auth.getToken();
-		 let hubID = Auth.getHub(token);
+		 let hubID = Auth.getHubID();
+		 
 		 let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
@@ -17,7 +20,7 @@ class Devices extends Component {
 		  };
 		  let data = {
 			  hubID: hubID
-		  };			  
+		  };		  
 		 fetch('http://localhost:3000/devices/', {
 			  method: 'POST',
 			  headers: head,
@@ -27,7 +30,7 @@ class Devices extends Component {
 			  .then(json => {
 				console.log(json);
 				if (json.result === 0) {
-					  return json.devices;
+					  this.setState({deviceList: json.devices});
 			    }
 				else {
 					  alert('Something went wrong when trying to fetch the devices. Please try again.');
@@ -42,7 +45,7 @@ class Devices extends Component {
 		 let deviceMappings = [];
 		 for(var device=0; device<devices.length; device++) {
 			 var dname = devices[device].name;
-			 var did = devices[device]._ID;
+			 var did = devices[device]._id;
 			 var map = {name: dname,id: did};
 			 deviceMappings.push(map);
 		 }
@@ -90,8 +93,8 @@ class Devices extends Component {
 		 //display non-empty arrays
 	 }
 	 displayDevices() {
-		 var devices = this.getDevices();
-		 //devices = [{_ID: 85, name: "Jeff"}];
+		 this.getDevices();
+		 var devices = this.state.deviceList;
 		 switch(this.state.sortby) {
 			 case 'bytype': {
 				 return this.sortByType(devices);
@@ -104,6 +107,7 @@ class Devices extends Component {
 			 }
 		 }
 	 }
+	 
 	 handleSort(value) {
 		 this.setState({sortby: value});
 	 }
@@ -115,28 +119,32 @@ class Devices extends Component {
 		}
         return (
              <div className="Devices">
-                <div className="col-md-6 ">
+				<Headers />
+				<Nav />
+                <div className="col-md-6 col-md-offset-4">
 					<div className="rcorners0">
-						<h3> Show my devices sorted by: </h3>
-						<div className="btn-group" data-toggle="buttons">
-							<label className="btn btn-default active" onClick={() => this.handleSort("byname")}>
-								<input type="radio" name="devices"/> Device Name
-							</label>
-							<label className="btn btn-default" onClick={() => this.handleSort("bytype")}>
-								<input type="radio" name="devices"/> Device Type
-							</label>
-							<label className="btn btn-default" onClick={() => this.handleSort("bygroup")}>
-								<input type="radio" name="devices"/> Device Group
-							</label>
+						<div className="text-center pb-5 pl-2 mb-5 ml-5"> 
+							<h3> Show my devices sorted by: </h3>
+							<div className="btn-group" data-toggle="buttons">
+								<label className="btn btn-default active" onClick={() => this.handleSort("byname")}>
+									<input type="radio" name="devices"/> Device Name
+								</label>
+								<label className="btn btn-default" onClick={() => this.handleSort("bytype")}>
+									<input type="radio" name="devices"/> Device Type
+								</label>
+								<label className="btn btn-default" onClick={() => this.handleSort("bygroup")}>
+									<input type="radio" name="devices"/> Device Group
+								</label>
+							</div>
+							<div className="row justify-content-md-center">
+								{devs}
+							</div>
+							<div>
+								<h3>
+									<Link to={'/DeviceAdder'}> Want to Add a New Device? Click HERE </Link>
+								</h3>
+							</div> 
 						</div>
-						<div className="row justify-content-md-center">
-							{devs}
-						</div>
-						<div>
-							<h3>
-								<Link to={'/DeviceAdder'}> Want to Add a New Device? Click HERE </Link>
-							</h3>
-						</div> 
 					</div>
                 </div>
             </div>
