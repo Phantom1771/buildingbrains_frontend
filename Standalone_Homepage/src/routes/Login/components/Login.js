@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 import Auth from '../../../Auth.js';
+import Header from '../../../components/Headers'
 
 class Login extends Component {
 	constructor(props) {
@@ -18,6 +19,8 @@ class Login extends Component {
 	}
   render() {
       return (
+		  <div>
+		  <Header/>
             <div className="col-sm-6 col-sm-offset-4 col-md-8 col-md-offset-0 main">
                 <div className="container">
                     <div className="row vertical-offset-100">
@@ -43,6 +46,7 @@ class Login extends Component {
                     </div>
                 </div>
             </div>
+			</div>
 
 );}}
 
