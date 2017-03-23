@@ -70,7 +70,7 @@ class DeviceAdder extends Component {
 			  .then(json => {
 				if (json.result === 0) {
 					  alert('Device successfully registered to your hub');
-					  //redirect here back to devices page
+					  location.replace('/devices');
 			    }
 				else {
 					  alert('Something went wrong when trying to register the device. Please try again.');
