@@ -71,10 +71,10 @@ module.exports = {
 		}).then(status)
 		.then((response) => response.json())
 		.then(json => {
-			console.log(json);
+			//console.log(json);
 			if (json.result === 0) {
 				var hubID = json.hubs[0];
-				console.log(hubID);
+				//console.log(hubID);
 				localStorage.hubID=hubID;
 			}
 			else {

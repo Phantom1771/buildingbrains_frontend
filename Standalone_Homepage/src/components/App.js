@@ -10,7 +10,6 @@ import DeviceAdder from '../routes/DeviceAdder/components/DeviceAdder.js';
 class App extends Component {
   render() {
     const isLoggedIn = Auth.loggedIn();
-    console.log(isLoggedIn);
     return (
       <div className="App">
         <Headers />

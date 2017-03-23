@@ -55,7 +55,6 @@ class Devices extends Component {
 		);
 		 return(
 			 <ul>
-
 			  {deviceMappings.map(dev => (
 				<li key={dev.id}>
 					<h3>
@@ -63,22 +62,43 @@ class Devices extends Component {
 					</h3>
 				</li>
 			  ))}
-
 			</ul>);
 	 }
 	 sortByType(devices) {
 		 if(!devices) {
 			 return;
 		 }
-		 return 3;
-		//create arrays for each device type 
+		 var typeSorted={};
 		for(var device=0; device<devices.length; device++) {
+			var type = devices[device].type
 			 //check type and put pair of devicename and id into appropriate array
+			 if (type in typeSorted)
+			 {
+				 typeSorted.type.push(devices[device]);
+			 }
+			 else 
+			 {
+				 typeSorted[type] = [devices[device]];
+			 }
 			 
 		 }
-		 
-		 //display non-empty arrays
+		 var display = [];
+		 for (type in typeSorted) {
+			 display.push(<p> {type} </p>);
+			 var t = typeSorted[type];
+			 for (var device=0; device<t.length; device++) {
+				 display.push(
+					 <li key={t[device]._id}>
+						<h4>
+							<Link to={`/devices/${t[device]._id}`}>{t[device].name}</Link>
+						</h4>
+					</li>
+				);
+			 }
+		 }
+		 return display;
 	 }
+	 /*
 	 sortByGroup(devices) {
 		 if(!devices) {
 			 return;
@@ -92,16 +112,18 @@ class Devices extends Component {
 		
 		 //display non-empty arrays
 	 }
+	 */
 	 displayDevices() {
-		 this.getDevices();
 		 var devices = this.state.deviceList;
 		 switch(this.state.sortby) {
 			 case 'bytype': {
 				 return this.sortByType(devices);
 			 }
+			 /*
 			 case 'bygroup': {
 				 return this.sortByGroup(devices);
 			 }
+			 */
 			 default: {
 				 return this.sortByName(devices);
 			 }
@@ -111,7 +133,9 @@ class Devices extends Component {
 	 handleSort(value) {
 		 this.setState({sortby: value});
 	 }
-	
+	 componentDidMount() {
+		 this.getDevices();
+	 }
      render() {
 		var devs = this.displayDevices();
 		if(!devs) {
@@ -131,9 +155,6 @@ class Devices extends Component {
 								</label>
 								<label className="btn btn-default" onClick={() => this.handleSort("bytype")}>
 									<input type="radio" name="devices"/> Device Type
-								</label>
-								<label className="btn btn-default" onClick={() => this.handleSort("bygroup")}>
-									<input type="radio" name="devices"/> Device Group
 								</label>
 							</div>
 							<div className="row justify-content-md-center">

@@ -3,7 +3,9 @@ import {Link} from 'react-router';
 import Auth from '../Auth.js';
 
 class Headers extends Component {
+	
      render() {
+		var logo = (<img src={require('./BBLogoColor.jpg')} width="16%" /> );
         return (
         <nav className="navbar navbar-inverse navbar-fixed-top">
 			<div className="container-fluid">
@@ -14,7 +16,9 @@ class Headers extends Component {
 						<span className="icon-bar"></span>
 						<span className="icon-bar"></span>
 					</button>
-					<Link className="navbar-brand" to="/">Building Brains</Link>
+					<div className="logo">
+						<Link className="navbar-brand" to="/">{logo}</Link>
+					</div>
 				</div>
 				<div id="navbar" className="navbar-collapse collapse">
 				<ul className="nav navbar-nav navbar-right">

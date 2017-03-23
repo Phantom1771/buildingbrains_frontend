@@ -28,9 +28,18 @@ class DeviceAdder extends Component {
 		 });
 		 return (deviceData);
 		 */
+		 console.log(nearbyDevices);
+		 console.log(nearbyDevices.length);
+		 var displayList=[];
 		 for(var i=0;i<nearbyDevices.length;i++) {
 			 var dev = nearbyDevices[i];
-			 return (<button className="btn btn-sm btn-secondary btn-block" onClick={this.openDeviceModal.bind(this,dev._id)}> {dev.link} </button>);
+			 displayList.push(<button className="btn btn-sm btn-secondary btn-block" onClick={this.openDeviceModal.bind(this,dev._id)}> {dev.link} </button>);
+		 }
+		 if (displayList.length > 0) {
+			return(displayList);
+		 }
+		 else {
+			 return;
 		 }
 	 }
 	 openDeviceModal(deviceID) {
@@ -107,8 +116,10 @@ class DeviceAdder extends Component {
 	    // references are now sync'd and can be accessed. 
 	    this.refs.subtitle.style.color = '#f00';
 	 }
+	 componentDidMount() {
+		 this.getNearbyDevices();
+	 }
 	 render() {
-		this.getNearbyDevices();
 		var nearbyDevices = this.displayDevices(this.state.deviceList);	
 		if(!nearbyDevices) {
 			nearbyDevices=(<div className="text-center pb-5 pl-2 mb-5 ml-5"> <h2> No nearby devices found. Click refresh to try again </h2></div>);
