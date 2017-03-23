@@ -1,0 +1,12 @@
+language: node_js
+
+node_js:
+    - stable
+before_install:
+    - cd Standalone_Homepage 
+
+before_script:
+
+script:
+    - npm install
+    - npm test

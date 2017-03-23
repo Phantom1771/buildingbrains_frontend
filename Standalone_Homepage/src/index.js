@@ -5,14 +5,17 @@ import Auth from './Auth.js'
 
 
 import App from './components/App.js'
-import Home from './components/Home.js'
 
 import Reg from './routes/Reg/components/Reg.js'
 import Recovery from'./routes/Recovery/components/Recovery.js'
 import Login from './routes/Login/components/Login.js'
+
 import Devices from './routes/Devices/components/Devices.js'
 import Device from './routes/Device/components/Device.js'
 import DeviceAdder from './routes/DeviceAdder/components/DeviceAdder.js'
+
+import Setting from './routes/Setting/components/Setting.js'
+
 
 
 
@@ -37,7 +40,7 @@ ReactDOM.render((
    <Router history={browserHistory} >
      <Route path="/" component={App} onEnter={requireAuth}>
      <Route path="/Stats" component={App} onEnter={requireAuth}/>
-     <Route path="/Settings" component={App} onEnter={requireAuth}/>
+     <Route path="/Settings" component={Setting} onEnter={requireAuth}/>
      <Route path="/Users" component={App} onEnter={requireAuth}/>
    </Route>
      <Route path="/Recovery" component={Recovery} onEnter={requireNotAuth}/>

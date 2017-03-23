@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "mocha-logger": "^1.0.5",
     "react-scripts": "0.8.5"
   },
   "dependencies": {
-    "rc-slider": "^6.2.0",
+
+    "node-fetch": "^1.6.3",
+    "rc-slider": "^6.1.2",
+
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
@@ -18,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "./node_modules/mocha/bin/mocha",
     "eject": "react-scripts eject"
   }
 }
