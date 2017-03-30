@@ -13,10 +13,10 @@ class App extends Component {
     return (
       <div >
         <Headers />
-        <div className="container-fluid">
+        <div className="container-fluid main-content">
         <div className="row">
           <Nav />
-          <div className="main-content col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
            {this.props.children || <Home />}
            </div>
         </div>

@@ -143,8 +143,6 @@ class Devices extends Component {
 		}
         return (
              <div className="Devices">
-				<Headers />
-				<Nav />
 					<div className="rcorners0">
 						<div className="text-center pb-5 pl-2 mb-5 ml-5"> 
 							<h3> Show my devices sorted by: </h3>
