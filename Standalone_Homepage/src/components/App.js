@@ -4,6 +4,8 @@ import Nav from './Nav.js';
 import Headers from './Headers.js';
 import Home from './Home.js'
 import Auth from '../Auth.js'
+import Devices from '../routes/Devices/components/Devices.js';
+import DeviceAdder from '../routes/DeviceAdder/components/DeviceAdder.js';
 
 class App extends Component {
   render() {
