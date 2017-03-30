@@ -6,13 +6,11 @@ class Nav extends Component {
 
     render() {
       return (
-        <div className="container-fluid">
-        <div className="row">
-        <div className="col-sm-2  sidebar">
-                <ul className="nav nav-sidebar">
+        <div className="col-sm-3 col-md-2 sidebar">
+                  <ul className="nav nav-sidebar">
                     <li>
                     <Link to="/" >  
-                    <i className="fa fa-home fa-3x " aria-hidden="true"></i>
+                    <i className="fa fa-home fa-5x " aria-hidden="true"></i>
                     <p>Home</p>
                     </Link>
                     </li>
@@ -20,35 +18,32 @@ class Nav extends Component {
 
                 <ul className="nav nav-sidebar">
                     <NavItem to="/Devices"  >  
-                    <i className="fa fa-object-group fa-3x " aria-hidden="true"></i>
+                    <i className="fa fa-object-group fa-5x " aria-hidden="true"></i>
                     <p>Devices</p>
                     </NavItem>
                 </ul>
 
                 <ul className="nav nav-sidebar">
                     <NavItem to="/Stats"> 
-                    <i className="fa fa-random fa-3x " aria-hidden="true"></i>
+                    <i className="fa fa-random fa-5x " aria-hidden="true"></i>
                     <p>Stats</p>
                     </NavItem>
                 </ul>
 
                 <ul className="nav nav-sidebar">
                     <NavItem to="/Users"> 
-                    <i className="fa fa-users fa-3x " aria-hidden="true"></i>
+                    <i className="fa fa-users fa-5x " aria-hidden="true"></i>
                     <p>User</p>
                     </NavItem>
                 </ul>
 
                 <ul className="nav nav-sidebar">
                     <NavItem to="/Settings">
-                    <i className="fa fa-cogs fa-3x " aria-hidden="true"></i>
+                    <i className="fa fa-cogs fa-5x " aria-hidden="true"></i>
                     <p>Settings</p>
                     </NavItem>
                 </ul>
-                  
-         </div>
-         </div>
-         </div>
+        </div>
         );
       }
 }

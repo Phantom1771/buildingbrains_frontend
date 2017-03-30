@@ -145,7 +145,6 @@ class Devices extends Component {
              <div className="Devices">
 				<Headers />
 				<Nav />
-                <div className="col-md-6 col-md-offset-4">
 					<div className="rcorners0">
 						<div className="text-center pb-5 pl-2 mb-5 ml-5"> 
 							<h3> Show my devices sorted by: </h3>
@@ -165,7 +164,6 @@ class Devices extends Component {
 									<Link to={'/DeviceAdder'}> Want to Add a New Device? Click HERE </Link>
 								</h3>
 							</div> 
-						</div>
 					</div>
                 </div>
             </div>

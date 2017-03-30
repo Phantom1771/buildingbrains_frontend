@@ -11,14 +11,16 @@ class App extends Component {
   render() {
     const isLoggedIn = Auth.loggedIn();
     return (
-      <div className="App">
+      <div >
         <Headers />
-        {isLoggedIn ? <Nav/> : null}
-        <div className="Home">
-          <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> 
-            {this.props.children || <Home />}
-            </div>
-       </div>
+        <div className="container-fluid">
+        <div className="row">
+          <Nav />
+          <div className="main-content col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+           {this.props.children || <Home />}
+           </div>
+        </div>
+        </div>
       </div>
     )
   }
