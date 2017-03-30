@@ -1,8 +1,37 @@
 'use strict';
 module.exports = {
+
+  
+  getHub(token) {
+    fetch('http://localhost:3000/hubs/', {
+		method: 'get',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json',
+			'x-access-token': token
+		}
+		}).then(status)
+		.then((response) => response.json())
+		.then(json => {
+			//console.log(json);
+			if (json.result === 0) {
+				var hubID = json.hubs[0];
+				//console.log(hubID);
+				localStorage.hubID=hubID;
+			}
+			else {
+			  alert('Unable to get hub for user');
+			}
+		})
+  },
+  getHubID() {
+	  return localStorage.hubID;
+  },
+
     api(url) {
         return 'http://localhost:4000'.concat(url);
     },
+
 
     login(email, pass) {
         let data = {
