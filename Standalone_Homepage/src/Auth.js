@@ -3,7 +3,7 @@ module.exports = {
 
   
   getHub(token) {
-    fetch('http://localhost:3000/hubs/', {
+    fetch(this.api('/hubs'), {
 		method: 'get',
 		headers: {
 			'Accept': 'application/json',
