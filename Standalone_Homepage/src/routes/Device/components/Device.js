@@ -175,15 +175,16 @@ class Device extends Component {
 				);
 			} 
 			default: {
-				if(statusJSON.type !== "Color") {
 					console.log(statusJSON.params[0]);
 					//console.log(statusJSON.state);
 					var deviceEnum =[];
-					deviceEnum.push(<option key={statusJSON._id} value={statusJSON.state}>{statusJSON.state}</option>);
+					deviceEnum.push(<option key={statusJSON.state} value={statusJSON.state}>{statusJSON.state}</option>);
 					for (var option=0; option < statusJSON.params.length; option++)
 						{
 							var data = statusJSON.params[option];
-							deviceEnum.push(<option key={option} value={data}>{data}</option>);
+							if(!(data in deviceEnum)) {
+								deviceEnum.push(<option key={data} value={data}>{data}</option>);
+							}
 						}
 					return (
 						<div className="deviceStatus">
@@ -196,169 +197,11 @@ class Device extends Component {
 							</h2>
 						</div>
 					);
-				} 
-				else {
-					/*
-					var redBox = (<input className="form-control" key="red" placeholder={statusJSON.state[0]} name="red" type="float" onBlur={this.handleRedChange.bind(this)}/>);
-					var greenBox = (<input className="form-control" key="green" placeholder={statusJSON.state[2]} name="green" type="float" onBlur={this.handleGreenChange.bind(this)}/>);
-					var blueBox = (<input className="form-control" key="blue" placeholder={statusJSON.state[4]} name="blue" type="float" onBlur={this.handleBlueChange.bind(this)}/>);
-					return (
-						<div className="deviceStatus">
-							<h1> Device: {statusJSON.name} </h1>
-							<h2> Device Type: {devType} </h2>
-							<h2> Red: {redBox} </h2>
-							<h2> Green: {greenBox} </h2>
-							<h2> Blue: {blueBox} </h2>
-							<p> To turn off, set all values to 0 </p>
-						</div>
-					);
-					*/
-					return (
-						<div className="deviceStatus">
-							<h1> Device: {statusJSON.name} </h1>
-							<h2> Device Type: {devType} </h2>
-							<h2> Currently Unable to Display Color Devices, Sorry </h2>
-						</div>
-					);
-				}
+				 
 			}
 		
         };
-	}/*
-	handleRedChange(event) {
-		var value = event.target.value;
-		if(value > 255) {
-			value = 255;
-		}
-		if(value < 0) {
-			value = 0;
-		}
-		var red = String(value);
-		var green = this.state.state[2];
-		var blue = this.state.state[4];
-		var rgb = red + "," + green + "," + blue;
-		let token = Auth.getToken();
-		  let hubID = Auth.getHubID();
-		  let url = Auth.api('/devices/update');
-		  let head = {
-			  'Accept': 'application/json',
-			  'Content-Type': 'application/json',
-		      'x-access-token': token
-		  };
-		  let data = {
-			  hubID: hubID,
-			  deviceID: this.state.deviceID,
-			  deviceSetting: rgb
-		  };
-		  //console.log(JSON.stringify(data));
-		  fetch(url, {
-			  method: 'POST',
-			  headers: head,
-			  body: JSON.stringify(data),
-			}).then(status)
-			  .then((response) => response.json())
-			  .then(json => {
-				//console.log(json);
-				if (json.result === 0) {
-					  return 0;
-			    }
-				else {
-					  alert('Something went wrong when trying to update the device. Please try again.');
-					  return -1;
-				}
-			  })        
-		
 	}
-	handleGreenChange(event) {
-		var value = event.target.value;
-		if(value > 255) {
-			value = 255;
-		}
-		if(value < 0) {
-			value = 0;
-		}
-		var green = String(value);
-		var red = this.state.state[0];
-		var blue = this.state.state[4];
-		var rgb = red + "," + green + "," + blue;
-		console.log(rgb);
-		let token = Auth.getToken();
-		  let hubID = Auth.getHubID();
-		  let url = Auth.api('/devices/update');
-		  let head = {
-			  'Accept': 'application/json',
-			  'Content-Type': 'application/json',
-		      'x-access-token': token
-		  };
-		  let data = {
-			  hubID: hubID,
-			  deviceID: this.state.deviceID,
-			  deviceSetting: rgb
-		  };
-		  //console.log(JSON.stringify(data));
-		  fetch(url, {
-			  method: 'POST',
-			  headers: head,
-			  body: JSON.stringify(data),
-			}).then(status)
-			  .then((response) => response.json())
-			  .then(json => {
-				//console.log(json);
-				if (json.result === 0) {
-					  return 0;
-			    }
-				else {
-					  alert('Something went wrong when trying to update the device. Please try again.');
-					  return -1;
-				}
-			  })        
-		
-	}
-	handleBlueChange(event) {
-		var value = event.target.value;
-		if(value > 255) {
-			value = 255;
-		}
-		if(value < 0) {
-			value = 0;
-		}
-		var blue = String(value);
-		var green = this.state.state[2];
-		var red = this.state.state[0];
-		var rgb = red + "," + green + "," + blue;
-		let token = Auth.getToken();
-		  let hubID = Auth.getHubID();
-		  let url = Auth.api('/devices/update');
-		  let head = {
-			  'Accept': 'application/json',
-			  'Content-Type': 'application/json',
-		      'x-access-token': token
-		  };
-		  let data = {
-			  hubID: hubID,
-			  deviceID: this.state.deviceID,
-			  deviceSetting: rgb
-		  };
-		  //console.log(JSON.stringify(data));
-		  fetch(url, {
-			  method: 'POST',
-			  headers: head,
-			  body: JSON.stringify(data),
-			}).then(status)
-			  .then((response) => response.json())
-			  .then(json => {
-				//console.log(json);
-				if (json.result === 0) {
-					  return 0;
-			    }
-				else {
-					  alert('Something went wrong when trying to update the device. Please try again.');
-					  return -1;
-				}
-			  })        
-		
-	}
-	*/
 	 setID(device) {
 		 this.setState({deviceID: device});
 	 }
