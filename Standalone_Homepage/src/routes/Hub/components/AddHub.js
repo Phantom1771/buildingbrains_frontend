@@ -29,6 +29,7 @@ class AddHub extends Component {
 				//console.log(json);
 				if (json.result === 0) {
 					  alert('Hub successfully registered');
+					  Auth.getHub(token);
 					  location.replace("/");
 			    }
 				else {
@@ -47,16 +48,20 @@ class AddHub extends Component {
 
 	render() {
 		return (
-			<div className="AddHub">
-				<div className="rcorners1">
-					<h2> ADD HUB HERE </h2>
-					<div className="form-group">
-						<input className="form-control" placeholder="Name for Your Hub" name="hubname" type="text" onBlur={this.handleName.bind(this)}/>
+			<div className="Device">
+				<div className="col-md-6 col-md-offset-2">
+					<div className="rcorners0">
+						<div className="text-center pb-5 pl-2 mb-5 ml-5">
+							<h2> Please Register Your Hub! </h2>
+							<div className="form-group">
+								<input className="form-control" placeholder="Name You Would Like to Call Your Hub" name="hubname" type="text" onBlur={this.handleName.bind(this)}/>
+							</div>
+							<div className="form-group">
+								<input className="form-control" placeholder="Enter the Hub Code From Your Box Here" name="hubcode" type="text" onBlur={this.handleCode.bind(this)}/>
+							</div>
+							<button className="btn btn-sm btn-secondary btn-block" onClick={this.addHubToUser.bind(this)}>Register Hub</button>
+						</div>
 					</div>
-					<div className="form-group">
-						<input className="form-control" placeholder="Hub Code From Box" name="hubcode" type="text" onBlur={this.handleCode.bind(this)}/>
-					</div>
-					<button className="btn btn-sm btn-secondary btn-block" onClick={this.addHubToUser.bind(this)}>Register Hub</button>
 				</div>
 			</div>
 		);

@@ -218,6 +218,7 @@ module.exports = {
 
     logout() {
         delete localStorage.token;
+        delete localStorage.hubID;
         location.reload();
     },
 
