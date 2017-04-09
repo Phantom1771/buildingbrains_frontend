@@ -14,6 +14,8 @@ import Devices from './routes/Devices/components/Devices.js'
 import Device from './routes/Device/components/Device.js'
 import DeviceAdder from './routes/DeviceAdder/components/DeviceAdder.js'
 
+import AddHub from './routes/Hub/components/AddHub.js'
+
 import Setting from './routes/Setting/components/Setting.js'
 
 
@@ -48,7 +50,8 @@ ReactDOM.render((
      <Route path="/Reg" component={Reg} onEnter={requireNotAuth}/> 
      <Route path="/Devices" component={Devices} onEnter={requireAuth}/>
      <Route path="/Devices/:deviceID" component={Device} onEnter={requireAuth}/>
-	 <Route path="/DeviceAdder" component={DeviceAdder} onEnter={requireAuth}/> 
+	 <Route path="/DeviceAdder" component={DeviceAdder} onEnter={requireAuth}/>
+	 <Route path="/AddHub" component={AddHub} onEnter={requireAuth}/> 
    </Router>
   
 ),

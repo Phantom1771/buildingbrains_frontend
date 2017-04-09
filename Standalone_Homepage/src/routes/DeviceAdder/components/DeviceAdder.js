@@ -61,7 +61,7 @@ class DeviceAdder extends Component {
 			  deviceID: deviceID,
 			  deviceName: deviceName
 		  };
-		  fetch('http://localhost:3000/devices/add', {
+		  fetch(Auth.api('/devices/add'), {
 			  method: 'POST',
 			  headers: head,
 			  body: JSON.stringify(data),
@@ -70,7 +70,7 @@ class DeviceAdder extends Component {
 			  .then(json => {
 				if (json.result === 0) {
 					  alert('Device successfully registered to your hub');
-					  location.replace('/devices');
+					  location.replace("/devices");
 			    }
 				else {
 					  alert('Something went wrong when trying to register the device. Please try again.');
@@ -85,7 +85,7 @@ class DeviceAdder extends Component {
 	 getNearbyDevices() {
 		 let token = Auth.getToken();
 		  let hubID = Auth.getHubID();
-		  let url = 'http://localhost:3000/devices/nearby';
+		  let url = Auth.api('/devices/nearby');
 		  let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
