@@ -12,7 +12,7 @@ class Devices extends Component {
 	 getDevices() {
 		 let token = Auth.getToken();
 		 let hubID = Auth.getHubID();
-		 
+		 let url = Auth.api('/devices/');
 		 let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
@@ -21,7 +21,8 @@ class Devices extends Component {
 		  let data = {
 			  hubID: hubID
 		  };		  
-		 fetch('http://localhost:3000/devices/', {
+		  console.log(data, url, hubID,token);
+		 fetch(url, {
 			  method: 'POST',
 			  headers: head,
 			  body: JSON.stringify(data),

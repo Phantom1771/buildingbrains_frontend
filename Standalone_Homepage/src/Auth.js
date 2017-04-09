@@ -18,6 +18,7 @@ module.exports = {
 				var hubID = json.hubs[0];
 				//console.log(hubID);
 				localStorage.hubID=hubID;
+				
 			}
 			else {
 			  alert('Unable to get hub for user');
@@ -25,6 +26,7 @@ module.exports = {
 		})
   },
   getHubID() {
+	  console.log(localStorage.hubID);
 	  return localStorage.hubID;
   },
 
@@ -51,6 +53,7 @@ module.exports = {
                 console.log(json);
                 if (json.result === 0) {
                     localStorage.token = json.userToken;
+                    this.getHub(localStorage.token);
                     location.reload();
                 } else {
                     alert('Unable to login with the given credentials. Please try again');
@@ -79,7 +82,7 @@ module.exports = {
                 console.log(json);
                 if (json.result === 0) {
                     localStorage.token = json.userToken;
-                    location.replace("/");
+                    location.replace("/AddHub");
                 } else {
                     alert('Unable to register with the given credentials. Please try again');
                 }

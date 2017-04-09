@@ -15,7 +15,7 @@ class Device extends Component {
 		  this.setState({state: value});
 		  let token = Auth.getToken();
 		  let hubID = Auth.getHubID();
-		  let url = 'http://localhost:3000/devices/update';
+		  let url = Auth.api('/devices/update');
 		  let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ class Device extends Component {
 		  this.setState({state: value});
 		  let token = Auth.getToken();
 		  let hubID = Auth.getHubID();
-		  let url = 'http://localhost:3000/devices/update';
+		  let url = Auth.api('/devices/update');
 		  let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ class Device extends Component {
 		  this.setState({state: value});
 		  let token = Auth.getToken();
 		  let hubID = Auth.getHubID();
-		  let url = 'http://localhost:3000/devices/update';
+		  let url = Auth.api('/devices/update');
 		  let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ class Device extends Component {
 	}
 	getDeviceState(deviceID){
 		  let token = Auth.getToken();
-		  let url = 'http://localhost:3000/devices/' + deviceID;
+		  let url = Auth.api('/devices/' + deviceID);
 		  let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
@@ -239,7 +239,7 @@ class Device extends Component {
 		var rgb = red + "," + green + "," + blue;
 		let token = Auth.getToken();
 		  let hubID = Auth.getHubID();
-		  let url = 'http://localhost:3000/devices/update';
+		  let url = Auth.api('/devices/update');
 		  let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
@@ -284,7 +284,7 @@ class Device extends Component {
 		console.log(rgb);
 		let token = Auth.getToken();
 		  let hubID = Auth.getHubID();
-		  let url = 'http://localhost:3000/devices/update';
+		  let url = Auth.api('/devices/update');
 		  let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
@@ -328,7 +328,7 @@ class Device extends Component {
 		var rgb = red + "," + green + "," + blue;
 		let token = Auth.getToken();
 		  let hubID = Auth.getHubID();
-		  let url = 'http://localhost:3000/devices/update';
+		  let url = Auth.api('/devices/update');
 		  let head = {
 			  'Accept': 'application/json',
 			  'Content-Type': 'application/json',
@@ -368,6 +368,38 @@ class Device extends Component {
 		 this.setID(device);
 		 this.getDeviceState(device)
 	 }
+	 deleteDevice() {
+		  let token = Auth.getToken();
+		  let hubID = Auth.getHubID();
+		  let url = Auth.api('/devices/delete');
+		  let head = {
+			  'Accept': 'application/json',
+			  'Content-Type': 'application/json',
+		      'x-access-token': token
+		  };
+		  let data = {
+			  hubID: hubID,
+			  deviceID: this.state.deviceID
+		  };
+		  console.log(JSON.stringify(data));
+		  fetch(url, {
+			  method: 'POST',
+			  headers: head,
+			  body: JSON.stringify(data),
+			}).then(status)
+			  .then((response) => response.json())
+			  .then(json => {
+				//console.log(json);
+				if (json.result === 0) {
+					  alert('device deleted');
+					  location.replace("/devices");
+			    }
+				else {
+					  alert('Something went wrong when trying to delete the device. Please try again.');
+					  return -1;
+				}
+			  })
+	 }
      render() {
 		var state=this.displayDeviceStatus(this.state.status);
 		return (
@@ -379,6 +411,7 @@ class Device extends Component {
 						<div className="text-center pb-5 pl-2 mb-5 ml-5"> 
 							{state}
 						</div>
+						<button className="btn btn-sm btn-danger btn-block" onClick={this.deleteDevice.bind(this)}>Delete Device</button>
 					</div>
 				</div>
 			</div>
