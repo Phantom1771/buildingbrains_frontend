@@ -56,7 +56,7 @@ class Setting extends Component {
       
       
       return (
-      <div className="container-rounded " >
+        <div className="rcorners0">
         <div className="h1 text-left"> Setting Page </div> 
         <div>
           <ul  className="nav nav-tabs p-3">
