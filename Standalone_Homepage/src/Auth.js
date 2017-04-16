@@ -54,7 +54,7 @@ module.exports = {
                 if (json.result === 0) {
                     localStorage.token = json.userToken;
                     this.getHub(localStorage.token);
-                    location.reload();
+                    location.replace("/");
                 } else {
                     alert('Unable to login with the given credentials. Please try again');
                 }

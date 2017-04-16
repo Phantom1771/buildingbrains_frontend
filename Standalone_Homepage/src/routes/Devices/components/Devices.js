@@ -12,6 +12,7 @@ class Devices extends Component {
 	 getDevices() {
 		 let token = Auth.getToken();
 		 let hubID = Auth.getHubID();
+		 if(!hubID) { Auth.getHub(token); hubID=Auth.getHubID(); }
 		 let url = Auth.api('/devices/');
 		 let head = {
 			  'Accept': 'application/json',
