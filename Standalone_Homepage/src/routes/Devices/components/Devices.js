@@ -3,12 +3,17 @@ import Auth from '../../../Auth.js';
 import { Link } from 'react-router';
 import Nav from '../../../components/Nav.js';
 import Headers from '../../../components/Headers.js';
-
+/*
+   This component displays the devices a user currently has associated with their hub as well as the option to add new ones
+*/
 class Devices extends Component {
 	 constructor(props) {
 		super(props);
 		this.state = {sortby: '', deviceList: ''};
 	 }
+	 /*
+	   This function gets the list of users devices from the server
+     */
 	 getDevices() {
 		 let token = Auth.getToken();
 		 let hubID = Auth.getHubID();
@@ -40,6 +45,9 @@ class Devices extends Component {
 				}
 			  })
 	 }
+	 /*
+	   This function sorts the devices by devicename for veiwing convenience
+     */
 	 sortByName(devices) {
 		 if(!devices) {
 			 return;
@@ -66,6 +74,9 @@ class Devices extends Component {
 			  ))}
 			</ul>);
 	 }
+	 /*
+	   This function sorts the devices by type for viewing convenience
+     */
 	 sortByType(devices) {
 		 if(!devices) {
 			 return;
@@ -101,43 +112,34 @@ class Devices extends Component {
 		 return display;
 	 }
 	 /*
-	 sortByGroup(devices) {
-		 if(!devices) {
-			 return;
-		 }
-		  return 1;
-		 //get user groups and create an array for each
-		 for(var device=0; device<devices.length; device++) {
-			 //check group(s) and put pair of devicename and id into appropriate array
-			 
-		 }
-		
-		 //display non-empty arrays
-	 }
-	 */
+	   This function displays the devices based on how they are supposed to be sorted
+     */
 	 displayDevices() {
 		 var devices = this.state.deviceList;
 		 switch(this.state.sortby) {
 			 case 'bytype': {
 				 return this.sortByType(devices);
 			 }
-			 /*
-			 case 'bygroup': {
-				 return this.sortByGroup(devices);
-			 }
-			 */
 			 default: {
 				 return this.sortByName(devices);
 			 }
 		 }
 	 }
-	 
+	 /*
+	   This function handles the sorting decision made by the user
+     */
 	 handleSort(value) {
 		 this.setState({sortby: value});
 	 }
+	 /*
+	   This function gets the devices before loading
+     */
 	 componentDidMount() {
 		 this.getDevices();
 	 }
+	 /*
+	   This function displays the device list
+     */
      render() {
 		var devs = this.displayDevices();
 		if(!devs) {

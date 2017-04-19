@@ -4,12 +4,18 @@ import Nav from '../../../components/Nav.js';
 import Headers from '../../../components/Headers.js';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css'
-
+/*
+  This component displays a page for an individual device based on the id of that device
+*/
 class Device extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {status: '', deviceID: '',state: ''};
 	 }
+	 /*
+	   This function will handle changes in numeric device states and
+	   send updates to the backend based on changed values that will be propogated to real devices
+     */
 	 handleFloatChange = (event) => {
 		  var value = event.target.value;
 		  this.setState({state: value});
@@ -44,6 +50,10 @@ class Device extends Component {
 				}
 			  })        
 	}
+	/*
+	   This function handles changes for devices with an enumeration of settings.
+	   It sends the new state to the backend whenever a new value is selected.
+    */
 	handleChange = (event) => {
 		  var value = event.target.value;
 		  this.setState({state: value});
@@ -78,6 +88,10 @@ class Device extends Component {
 				}
 			  })        
 	}
+	/*
+	   This function handles device settings managed by a percentage (i.e. brightness)
+	   and sends a request every time the slider is adjusted
+    */
 	handlePercentChange = (value) => {
 		  this.setState({state: value});
 		  let token = Auth.getToken();
@@ -111,6 +125,9 @@ class Device extends Component {
 				}
 			  })        
 	}
+	/*
+	   This function gets the current state of a device from the backend.
+    */
 	getDeviceState(deviceID){
 		  let token = Auth.getToken();
 		  let url = Auth.api('/devices/' + deviceID);
@@ -137,6 +154,12 @@ class Device extends Component {
 				}
 			  })        
 	}
+	/*
+	   This function converts the state of a device into displayable pieces.
+	   If the device does not load properly, it asks the user to refresh.
+	   Otherwise, it checks the parameters of the device and creates the appropriate display
+	   for the setting in question.
+    */
 	displayDeviceStatus(statusJSON) {
 		if(!statusJSON)
 		{
@@ -202,15 +225,24 @@ class Device extends Component {
 		
         };
 	}
+	 /*
+	   This function updates the local parameters with the deviceID to be retrieved later
+     */
 	 setID(device) {
 		 this.setState({deviceID: device});
 	 }
+	 /*
+	   This function performs all actions necessary before the data can be displayed
+     */
 	 componentDidMount() {
 		 let { params } = this.props;
 		 let device = params.deviceID;
 		 this.setID(device);
 		 this.getDeviceState(device)
 	 }
+	 /*
+	   This function will delete a device from the hub it is associated with. It can be added back at a later time.
+     */
 	 deleteDevice() {
 		  let token = Auth.getToken();
 		  let hubID = Auth.getHubID();
@@ -243,6 +275,9 @@ class Device extends Component {
 				}
 			  })
 	 }
+	 /*
+	   This function displays the device and all of it's relevant information to the user.
+     */
      render() {
 		var state=this.displayDeviceStatus(this.state.status);
 		return (
