@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
+import Auth from '../Auth.js'
 
 class Home extends Component {
+  componentDidMount() {
+		 Auth.getHub(Auth.getToken());
+	 }
   render() {
+	var now = new Date();
+	var date = now.toDateString();
+	var time = now.toLocaleTimeString();
     return (
      <div className="rcorners0">
        <h1 className="page-header">Dashboard</h1>
-       <button type="button" className="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
-        <div id="demo" className="collapse">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </div>
-
-        </div>
+       <div className="text-center pb-5 pl-2 mb-5 ml-5"> 
+			<div className="Home">
+				<h1> Welcome Home! </h1>
+				<img src={require("./BBSquareLogo.png")} width="30%"/>
+				<h1>
+					It is currently {time} on {date}
+				</h1>
+			</div>
+		</div>
+     </div>
     );
   }
 }
