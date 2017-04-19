@@ -1,26 +1,8 @@
 TO #Building Brains
 
+For repository structure/where to find certain components see Wiki on Structure.
 
-## Project Structure
-
-```
-./
-│   README.md
-│   LICENSE  
-│
-└───src/  
-    │
-    └───web/   
-    │    │   Php laravel  
-    │    └──────────────── 
-    │        
-    └───hub/  
-         │   OpenHab  
-         └─────────────────
-
-```
-
-
+For Version 2 implementation suggestions/help see Wiki on V2
 
 ## Workflow
 Of a certain amount of bureaucracy, rules and regulations is, unfortunately, a necessity. 
