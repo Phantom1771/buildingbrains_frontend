@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import Auth from '../Auth.js'
 
 class Home extends Component {
+  componentDidMount() {
+		 Auth.getHub(Auth.getToken());
+	 }
   render() {
 	var now = new Date();
 	var date = now.toDateString();
@@ -11,7 +15,7 @@ class Home extends Component {
        <div className="text-center pb-5 pl-2 mb-5 ml-5"> 
 			<div className="Home">
 				<h1> Welcome Home! </h1>
-				<img src={require("./BBSquareLogo.png")} width="35%"/>
+				<img src={require("./BBSquareLogo.png")} width="30%"/>
 				<h1>
 					It is currently {time} on {date}
 				</h1>
