@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import Auth from '../../../Auth.js';
-
+/*
+   This component allows the user to add a hub to their newly created account 
+*/
 class AddHub extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {hubName: '',hubCode: ''};
 	 }
+	 /*
+	   This function performs the api call to associate the hub with the user based on the hubCode
+     */
 	addHubToUser() {
 		let token = Auth.getToken();
 		let url = Auth.api('/hubs/add');
@@ -39,13 +44,21 @@ class AddHub extends Component {
 			  })
 		return 1;
 	}
+	/*
+	   This function handles hubName input
+     */
 	handleName(event) {
 		this.setState({hubName: event.target.value});
 	}
+	/*
+	   This function handles the hubCode input
+     */
 	handleCode(event) {
 		this.setState({hubCode: event.target.value});
 	}
-
+	/*
+	   This function displays all the requisite fields
+     */
 	render() {
 		return (
 			<div className="Device">

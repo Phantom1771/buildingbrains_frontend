@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import Auth from '../Auth.js'
-
+/*
+   This component is the home page for the user that displays the time, welcome home, and BB logo 
+*/
 class Home extends Component {
+	/*
+	   This function makes sure that the hubid is set before any api calls are made
+     */
   componentDidMount() {
 		 Auth.getHub(Auth.getToken());
 	 }
+	 /*
+	   This function displays the home page
+     */
   render() {
 	var now = new Date();
 	var date = now.toDateString();

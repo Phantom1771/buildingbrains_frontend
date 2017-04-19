@@ -14,20 +14,18 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
-
+/*
+  This component displays the page to allow users to add nearby devices to their devices 
+*/
 class DeviceAdder extends Component {
 	 constructor(props) {
 		super(props);
 		this.state = {modalOpen: false, deviceName: '', deviceID: '', deviceList: ''};
 	 }
+	 /*
+	   This function creates a displayable list of devices nearby to the hub
+     */
 	 displayDevices(nearbyDevices) {
-		 //console.log(nearbyDevices);
-		 
-		 /*var deviceData = Object.keys(nearbyDevices).map((k, idx) => {
-			 return (<button className="btn btn-sm btn-secondary btn-block" onClick={this.openDeviceModal.bind(this,nearbyDevices[k].id)}> nearbyDevices[k].name </button>);
-		 });
-		 return (deviceData);
-		 */
 		 console.log(nearbyDevices);
 		 console.log(nearbyDevices.length);
 		 var displayList=[];
@@ -42,10 +40,16 @@ class DeviceAdder extends Component {
 			 return;
 		 }
 	 }
+	 /*
+	   This function opens a popup to create a name for the device when one is clicked
+     */
 	 openDeviceModal(deviceID) {
 		 this.setState({modalOpen: true});
 		 this.setState({deviceID: deviceID});
 	 }
+	 /*
+	   This function registers the device with the hub in question
+     */
 	 registerDevice() {
 		 let token = Auth.getToken();
 		 let hubID = Auth.getHubID();
@@ -79,9 +83,15 @@ class DeviceAdder extends Component {
 			  })
 		 this.setState({modalOpen: false});
 	 }
+	 /*
+	   This function extracts the value for the name of the device
+     */
 	 handleName(event) {
 		 this.setState({deviceName: event.target.value});
 	 }
+	 /*
+	   This function retrieves a list of nearby devices
+     */
 	 getNearbyDevices() {
 		 let token = Auth.getToken();
 		  let hubID = Auth.getHubID();
@@ -112,13 +122,21 @@ class DeviceAdder extends Component {
 				}
 			  })        
 	 }
+	 /*
+	   This function controls the style of the modal
+     */
 	 afterOpenModal() {
-	    // references are now sync'd and can be accessed. 
 	    this.refs.subtitle.style.color = '#f00';
 	 }
+	 /*
+	   This function gets the nearby devices before the page displays to ensure no race conditions
+     */
 	 componentDidMount() {
 		 this.getNearbyDevices();
 	 }
+	 /*
+	   This function displays the devices that can be added as well the methods to add them
+     */
 	 render() {
 		var nearbyDevices = this.displayDevices(this.state.deviceList);	
 		if(!nearbyDevices) {
