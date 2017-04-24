@@ -82,10 +82,7 @@ class Automation extends Component {
         <div className="h1 text-left"> Automation Page </div> 
         <div>
           <ul  className="nav nav-tabs">
-             <li className="active">
-              <a href="#0" data-toggle="tab">Automation Pages</a>
-            </li>
-            <li >
+            <li className="active">
               <a href="#1" data-toggle="tab">Use a stored automation</a>
             </li>
             <li>
@@ -97,11 +94,7 @@ class Automation extends Component {
 
 
         <div className="tab-content">
-          <div className="tab-pane fade in active" id="0">
-            <br/>
-            <label> This is the automation page. <br/>You can <a href="#1"> use a stored automation</a> or <a href="#2"> save an automation</a> </label>
-            </div>
-        <div className="tab-pane fade" id="1">
+        <div className="tab-pane fade in active" id="1">
 
             <br/>
           <div className="form-group">
