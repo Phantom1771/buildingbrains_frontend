@@ -1,7 +1,11 @@
 'use strict';
 module.exports = {
 
-  
+  /*
+	This function is called after the user has logged in.
+	It will get the hub associated with the user account from the server
+	and store it in localstorage as hubID for easy access.
+  */
   getHub(token) {
     fetch(this.api('/hubs'), {
 		method: 'get',
@@ -25,17 +29,24 @@ module.exports = {
 			}
 		})
   },
+  /*
+	This function returns the stored hubID to the user
+  */
   getHubID() {
       this.getHub(localStorage.token)
 	  console.log(localStorage.hubID);
 	  return localStorage.hubID;
   },
-
+  /*
+	This function appends the correct api endpoint onto the location of the server
+  */
     api(url) {
         return 'http://localhost:4000'.concat(url);
     },
 
-
+	/*
+	  This function logs in the user to their account
+    */
     login(email, pass) {
         let data = {
             email: email,
@@ -55,12 +66,15 @@ module.exports = {
                 if (json.result === 0) {
                     localStorage.token = json.userToken;
                     this.getHub(localStorage.token);
-                    location.reload();
+                    location.replace("/");
                 } else {
                     alert('Unable to login with the given credentials. Please try again');
                 }
             })
     },
+    /*
+	  This function registers a new user to the database
+    */
     register(firstname, lastname, email, pass) {
         let data = {
             firstname: firstname,
@@ -90,7 +104,9 @@ module.exports = {
                 return json
             })
     },
-
+    /*
+	  This function gets the account data from the server for a given user
+    */
     getAccountInfo() {
         let head = {
             'Accept': 'application/json',
@@ -108,7 +124,9 @@ module.exports = {
             })
 
     },
-
+	/*
+	  This function allows users to update their name in the database
+    */
     updateProfileInfo(first, last) {
         let data = {
             firstName: first,
@@ -132,6 +150,9 @@ module.exports = {
                 }
             })
     },
+    /*
+	  This function allows the user to update their password in the database
+    */
     updatePassword(pass) {
         let data = {
             password: pass,
@@ -158,7 +179,9 @@ module.exports = {
                 }
             })
     },
-
+	/*
+	  This function will delete a user account from the database and all its metadata
+    */
     deleteAccount() {
         let data = {
             userToken: this.getToken()
@@ -184,6 +207,9 @@ module.exports = {
                 return json;
             })
     },
+    /*
+	  This function allows a user to recover their password via email
+    */
     attemptRecovery(em) {
         let data = {
             email: em
@@ -212,17 +238,23 @@ module.exports = {
             alert('Recovery fail');
         }
     },
-
+	/*
+	  This function will return the login token for authentication
+    */
     getToken() {
         return localStorage.token
     },
-
+	/*
+	  This function logs the user out and deletes the localstorage contents
+    */
     logout() {
         delete localStorage.token;
         delete localStorage.hubID;
         location.reload();
     },
-
+	/*
+	  This function will return if the user is logged in or not
+    */
     loggedIn() {
         //return true
         if (localStorage.token === undefined) return false;
