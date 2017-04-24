@@ -26,6 +26,7 @@ module.exports = {
 		})
   },
   getHubID() {
+      this.getHub(localStorage.token)
 	  console.log(localStorage.hubID);
 	  return localStorage.hubID;
   },
@@ -44,7 +45,7 @@ module.exports = {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data)
             })

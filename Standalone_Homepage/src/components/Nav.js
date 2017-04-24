@@ -26,7 +26,7 @@ class Nav extends Component {
                 <ul className="nav nav-sidebar">
                     <NavItem to="/Stats"> 
                     <i className="fa fa-random fa-5x " aria-hidden="true"></i>
-                    <p>Stats</p>
+                    <p>Automation</p>
                     </NavItem>
                 </ul>
 
