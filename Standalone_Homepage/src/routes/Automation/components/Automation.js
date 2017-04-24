@@ -96,13 +96,14 @@ class Automation extends Component {
         </div>
 
 
-        <div className="tab-content ">
-          <div className="tab-pane active" id="0">
+        <div className="tab-content">
+          <div className="tab-pane fade in active" id="0">
             <br/>
             <label> This is the automation page. <br/>You can <a href="#1"> use a stored automation</a> or <a href="#2"> save an automation</a> </label>
             </div>
-        <div className="tab-pane " id="1">
+        <div className="tab-pane fade" id="1">
 
+            <br/>
           <div className="form-group">
               <label for="sel1"> Choose an stored automation:</label>
               <select className="form-control" id="sel1">
@@ -122,6 +123,7 @@ class Automation extends Component {
 
 
           <div className="tab-pane" id="2">
+            <br/>
             <div className="form-group">
                 <label for="inputdefault">Set your new Automation Name</label>
                 <input className="form-control" id="inputdefault" type="text" onChange={this.handleName.bind(this)}/>
