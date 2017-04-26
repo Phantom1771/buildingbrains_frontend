@@ -77,6 +77,58 @@ module.exports = {
 					  return -1;
                 }
             })
+    },
+    sendAutomation(autoId){
+        let data = {
+            hubID: localStorage.hubID,
+            automationID: autoId
+        }
+        return fetch(this.api('/automations/send'), {
+            method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'x-access-token': localStorage.token
+                },
+                body: JSON.stringify(data)
+            })
+            .then((response) => response.json())
+            .then(json => {
+                console.log(json);
+				if (json.result === 0) {
+                    return json
+			    }
+				else {
+					  alert('Something went wrong when trying to send the automations.' + json.error+' Please try again.');
+					  return -1;
+                }
+            })
+    },
+    deleteAutomation(autoId){
+        let data = {
+            hubID: localStorage.hubID,
+            automationID: autoId
+        }
+        return fetch(this.api('/automations/delete'), {
+            method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'x-access-token': localStorage.token
+                },
+                body: JSON.stringify(data)
+            })
+            .then((response) => response.json())
+            .then(json => {
+                console.log(json);
+				if (json.result === 0) {
+                    return json
+			    }
+				else {
+					  alert('Something went wrong when trying to send the automations.' + json.error+' Please try again.');
+					  return -1;
+                }
+            })
     }
     
 }

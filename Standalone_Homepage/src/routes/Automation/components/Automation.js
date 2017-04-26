@@ -10,7 +10,9 @@ class Automation extends Component {
       automationList: [],
       automationCount: '',
       checkedList: [],
-      automationName: ''
+      automationName: '',
+      selectedAutomation: 'default',
+      selectedDeleteAutomation: 'default'
     };
 	 }
     componentWillMount() {
@@ -37,9 +39,6 @@ class Automation extends Component {
 
         
     }
-    handleProfileSubmit(){
-      Auth.updateProfileInfo(this.state.first, this.state.last);
-    }
     handleSubmit(){
       console.log(this.state)
       Auto.addAutomation(this.state.checkedList, this.state.automationName).then(
@@ -48,13 +47,40 @@ class Automation extends Component {
           location.reload()
         })
     }
-     handleName(e){
+    handleApply(){
+      console.log(this.state)
+      if(this.state.selectedAutomation !== 'default'){
+        Auto.sendAutomation(this.state.selectedAutomation).then(
+          json =>{
+            console.log(json)
+          }
+        )
+      }
+    }
+    handleSelect(e){
+      console.log(e.target.value)
+      this.setState({selectedAutomation: e.target.value})
+    }
+    handleName(e){
        this.setState({automationName : e.target.value})
     }
+    handleDelete(e){
+       console.log(this.state.selectedDeleteAutomation)
+       if(this.state.selectedDeleteAutomation !== 'default'){
+        Auto.deleteAutomation(this.state.selectedDeleteAutomation).then(
+          json =>{
+            location.reload()
+            console.log(json)
 
+          }
+        )
+       }
+    }
+    handleDeleteSelect(e){
+      console.log(e.target.value)
+      this.setState({selectedDeleteAutomation: e.target.value})
+    }
     handleCheck(e){
-      console.log(e)
-      console.log(e.target)
       console.log(e.target.dataset.id)
        var ch = {
             device: e.target.dataset.id,
@@ -89,6 +115,10 @@ class Automation extends Component {
               <a href="#2" data-toggle="tab">Save an automation</a>
 
             </li>
+            <li>
+              <a href="#3" data-toggle="tab">Delete an automation</a>
+
+            </li>
           </ul>
         </div>
 
@@ -99,15 +129,16 @@ class Automation extends Component {
             <br/>
           <div className="form-group">
               <label for="sel1"> Choose an stored automation:</label>
-              <select className="form-control" id="sel1">
+              <select className="form-control" id="sel1" onChange={this.handleSelect.bind(this)}>
+                <option value="default"> Please select one of the automation profile</option>
               {this.state.automationList.map( automation=>
-                 <option>{automation.name}</option>
+                 <option value={automation._id}>{automation.name}</option>
               )}
               </select>
           </div>
 
       <div align="left" className="updateButton">
-              <button className="btn btn-lg btn-primary  " type="submit" onClick={this.handleProfileSubmit.bind(this)} >Update</button>
+              <button className="btn btn-lg btn-primary  " type="submit" onClick={this.handleApply.bind(this)} >Update</button>
             </div>
           </div>
           
@@ -136,6 +167,25 @@ class Automation extends Component {
               <button className="btn btn-lg btn-primary  " type="submit" onClick={this.handleSubmit.bind(this)} >Add New Automation</button>
               </div>
           </div>           
+              <div className="tab-pane" id="3">
+            <br/>
+           <div className="tab-pane fade in active" id="1">
+
+          <div className="form-group">
+              <label for="sel1"> Choose an stored automation:</label>
+              <select className="form-control" id="sel1" onChange={this.handleDeleteSelect.bind(this)}>
+                <option value="default"> Please select one of the automation profile</option>
+              {this.state.automationList.map( automation=>
+                 <option value={automation._id}>{automation.name}</option>
+              )}
+              </select>
+          </div>
+
+            <div align="left" className="updateButton">
+              <button className="btn btn-lg btn-danger" type="submit" onClick={this.handleDelete.bind(this)} >Delete</button>
+            </div>
+          </div> 
+          </div>   
           
 			</div>
 			</div>
