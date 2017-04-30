@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
 import NavItem from './NavItem.js'
+
 class Nav extends Component {
-    
+   
 
     render() {
+     
       return (
         <div className="col-sm-3 col-md-2 sidebar">
                   <ul className="nav nav-sidebar">
@@ -26,7 +28,7 @@ class Nav extends Component {
                 <ul className="nav nav-sidebar">
                     <NavItem to="/Stats"> 
                     <i className="fa fa-random fa-5x " aria-hidden="true"></i>
-                    <p>Stats</p>
+                    <p>Automation</p>
                     </NavItem>
                 </ul>
 
@@ -36,13 +38,8 @@ class Nav extends Component {
                     <p>User</p>
                     </NavItem>
                 </ul>
-
-                <ul className="nav nav-sidebar">
-                    <NavItem to="/Settings">
-                    <i className="fa fa-cogs fa-5x " aria-hidden="true"></i>
-                    <p>Settings</p>
-                    </NavItem>
-                </ul>
+               
+            
         </div>
         );
       }

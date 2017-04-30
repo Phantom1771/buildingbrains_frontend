@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Auth from '../../../Auth.js';
+import Tour from "react-user-tour";
+
+
 class Setting extends Component {
     
     constructor(props){
@@ -9,7 +12,9 @@ class Setting extends Component {
         first: [],
         last: [],
         pass: [],
-        confirm: []
+        confirm: [],
+        isTourActive: false,
+        tourStep: 1
       }
     }
     componentDidMount() {
@@ -22,6 +27,9 @@ class Setting extends Component {
            last: data.lastname
          }) 
        )
+       this.setState({
+      isTourActive: false
+    });
     }
     
 	  handleFirstChange(event) {
@@ -53,11 +61,25 @@ class Setting extends Component {
       }
     }
     render() {
-      
-      
+     const tourTitleStyle = {
+      fontWeight: 700,
+      fontSize: 18,
+      paddingTop: 20,
+      paddingBottom: 10,
+      paddingLeft: 10
+    };
+
+    const tourMessageStyle = {
+      fontSize: 16,
+      paddingLeft: 10
+    }; 
       return (
         <div className="rcorners0">
-        <div className="h1 text-left"> Setting Page </div> 
+        <div className="h1 text-left"> Setting Page </div>
+        <div  className="tutorial" style={{width: 150, height: 50, position:"relative", right:0, backgroundColor: "blanchedalmond", textAlign: "center", opacity: 0.8, paddingTop: 15, fontWeight: 700, cursor: "pointer"}}
+        onClick={() => this.setState({isTourActive: true, tourStep: 1})}>
+      Start Tutorial </div> <br/>
+ 
         <div>
           <ul  className="nav nav-tabs p-3">
             <li className="active">
@@ -75,7 +97,7 @@ class Setting extends Component {
 
         <div className="tab-content ">
 
-          <div className="tab-pane active" id="1">
+          <div className="tab-pane fade in active" id="1">
             <br/>
             <form>
               <div className="form-group row">
@@ -106,7 +128,7 @@ class Setting extends Component {
 
 
 
-          <div className="tab-pane" id="2">
+          <div className="tab-pane fade" id="2">
             <br/>
             <form>
        
@@ -127,13 +149,52 @@ class Setting extends Component {
               <button className="btn btn-lg btn-primary  " type="submit" onClick={this.handlePassSubmit.bind(this)} >Update</button>
             </div>
           </div>
-            <div className="tab-pane" id="3">
+            <div className="tab-pane fade " id="3">
             <br/> 
             <div align="left" className="updateButton">
               <button className="btn btn-lg btn-danger " type="submit" onClick={this.handleDeleteUser.bind(this)} >Delete Account</button>
             </div>
             </div>
         </div>
+              <div style={{position: "absolute", top: 0}}>
+                <Tour
+                    active={this.state.isTourActive}
+                    step={this.state.tourStep}
+                    onNext={(step) => this.setState({tourStep: step})}
+                    onBack={(step) => this.setState({tourStep: step})}
+                    onCancel={() => this.setState({isTourActive: false})}
+                    steps={[
+                        {
+                            step: 1,
+                            selector: ".rcorners0",
+                            title: <div style={tourTitleStyle}>Welcome to the User page!</div>,
+                            body: <div style={tourMessageStyle}>Follow the instructions!</div>,
+                            position:"bottom",
+                            verticalOffset: -50
+
+                        },
+                        {
+                            step: 2,
+                            selector: ".nav.nav-tabs.p-3",
+                            title: <div style={tourTitleStyle}>Click "Change Password" !</div>,
+                            body: <div style={tourMessageStyle}>Input your new password. Click "Update" to save the change.</div>,
+                            position: "top",
+                            //horizontalOffset: -200,
+                            verticalOffset: -40
+                        },
+                        {
+                            step: 3,
+                            selector: ".nav.nav-tabs.p-3",
+                            title: <div style={tourTitleStyle}>Click "Delete account" !</div>,
+                            body: <div style={tourMessageStyle}>Caution: "Delete account" will permanently remove all your information !</div>,
+                            position: "top",
+                            horizontalOffset: 100,
+                            verticalOffset: -40
+                        }
+                        
+                    ]}
+                />
+                </div>
 			</div>
 
         );

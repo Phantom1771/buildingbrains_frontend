@@ -33,6 +33,7 @@ module.exports = {
 	This function returns the stored hubID to the user
   */
   getHubID() {
+      this.getHub(localStorage.token)
 	  console.log(localStorage.hubID);
 	  return localStorage.hubID;
   },
@@ -40,7 +41,7 @@ module.exports = {
 	This function appends the correct api endpoint onto the location of the server
   */
     api(url) {
-        return 'http://localhost:4000'.concat(url);
+        return 'http://52.36.226.213:4000'.concat(url);
     },
 
 	/*
@@ -55,7 +56,7 @@ module.exports = {
                 method: 'post',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data)
             })

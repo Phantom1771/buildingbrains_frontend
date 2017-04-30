@@ -10,6 +10,8 @@ import Reg from './routes/Reg/components/Reg.js'
 import Recovery from'./routes/Recovery/components/Recovery.js'
 import Login from './routes/Login/components/Login.js'
 
+import Automation from './routes/Automation/components/Automation.js'
+
 import Devices from './routes/Devices/components/Devices.js'
 import Device from './routes/Device/components/Device.js'
 import DeviceAdder from './routes/DeviceAdder/components/DeviceAdder.js'
@@ -41,7 +43,7 @@ function requireNotAuth(nextState, replace) {
 ReactDOM.render((
    <Router history={browserHistory} >
      <Route path="/" component={App} onEnter={requireAuth}>
-      <Route path="/Stats" component={Setting} onEnter={requireAuth}/>
+      <Route path="/Stats" component={Automation} onEnter={requireAuth}/>
       <Route path="/Settings" component={Setting} onEnter={requireAuth}/>
       <Route path="/Users" component={Setting} onEnter={requireAuth}/>
       <Route path="/Devices" component={Devices} onEnter={requireAuth}/>
