@@ -2,6 +2,8 @@ TO #Building Brains
 
 For development purposes, this repository will require both the backend to be run locally and either a working hub or the building_brains_fake_hub repository to be run locally.
 
+The tutorial is currently functional, but not merged into master. See pull requests for details.
+
 For repository structure/where to find certain components see Wiki on Structure.
 
 For Version 2 implementation suggestions/help see Wiki on V2
