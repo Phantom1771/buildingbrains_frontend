@@ -8,7 +8,7 @@ class Login extends Component {
 		super(props);
 		this.state = {email: '', password: '',result: ''};
 	 }
-	 handleEmailChange(event) {
+	handleEmailChange(event) {
 		this.setState({email: event.target.value});
 	}
 	handlePasswordChange(event) {

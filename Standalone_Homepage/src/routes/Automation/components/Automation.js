@@ -109,14 +109,14 @@ class Automation extends Component {
         <div>
           <ul  className="nav nav-tabs">
             <li className="active">
-              <a href="#1" data-toggle="tab">Use a stored automation</a>
+              <a href="#1" data-toggle="tab">Use a Saved Automation</a>
             </li>
             <li>
-              <a href="#2" data-toggle="tab">Save an automation</a>
+              <a href="#2" data-toggle="tab">Add a New Automation</a>
 
             </li>
             <li>
-              <a href="#3" data-toggle="tab">Delete an automation</a>
+              <a href="#3" data-toggle="tab">Delete an Automation</a>
 
             </li>
           </ul>
@@ -128,7 +128,7 @@ class Automation extends Component {
 
             <br/>
           <div className="form-group">
-              <label for="sel1"> Choose an stored automation:</label>
+              <label for="sel1"> This will execute an automation that you have saved</label>
               <select className="form-control" id="sel1" onChange={this.handleSelect.bind(this)}>
                 <option value="default"> Please select one of the automation profile</option>
               {this.state.automationList.map( automation=>
@@ -137,7 +137,7 @@ class Automation extends Component {
               </select>
           </div>
 
-      <div align="left" className="updateButton">
+            <div align="left" className="updateButton">
               <button className="btn btn-lg btn-primary  " type="submit" onClick={this.handleApply.bind(this)} >Update</button>
             </div>
           </div>
@@ -150,6 +150,14 @@ class Automation extends Component {
             <br/>
             <div className="form-group">
                 <label for="inputdefault">Set your new Automation Name</label>
+                <label> 
+                  <ul>
+                    <li>First, set each device that you would like to include in the automation to the state you would like it to be in when you run the automation. </li>
+                  <li>After ALL devices have been set properly, select them from the list and enter a name for your automation like "Watch a Movie". </li>
+                    <li>Then hit submit and your automation will be saved! To run this automation, go to the "Run a Saved Automation" tab and select it from the list. </li>
+                     <li> Your devices will return to the state you originally set them to for the automation.</li>
+                  </ul>
+                  </label>
                 <input className="form-control" id="inputdefault" type="text" onChange={this.handleName.bind(this)}/>
             </div>
                 <label for="inputdefault">Select the devices you want to include</label>
