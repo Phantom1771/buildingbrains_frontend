@@ -23,9 +23,8 @@ class Headers extends Component {
               <ul className="nav navbar-nav navbar-right">
                 <li><a href="#">Home</a></li>
                 <li><a href="/Devices">Devices</a></li>
+                <li><a href="/Stats">Automation</a></li>
                 <li><a href="/Users">Users</a></li>
-                <li><a href="/Stats">Stats</a></li>
-                <li><a href="/Automation">Automation</a></li>
                 <li><Link onClick={Auth.logout.bind(this)}>Log out</Link></li>
               </ul>
               </div>:

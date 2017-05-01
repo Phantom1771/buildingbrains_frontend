@@ -75,7 +75,7 @@ class Setting extends Component {
 
         <div className="tab-content ">
 
-          <div className="tab-pane active" id="1">
+          <div className="tab-pane fade in active" id="1">
             <br/>
             <form>
               <div className="form-group row">
@@ -106,7 +106,7 @@ class Setting extends Component {
 
 
 
-          <div className="tab-pane" id="2">
+          <div className="tab-pane fade" id="2">
             <br/>
             <form>
        
@@ -127,7 +127,7 @@ class Setting extends Component {
               <button className="btn btn-lg btn-primary  " type="submit" onClick={this.handlePassSubmit.bind(this)} >Update</button>
             </div>
           </div>
-            <div className="tab-pane" id="3">
+            <div className="tab-pane fade " id="3">
             <br/> 
             <div align="left" className="updateButton">
               <button className="btn btn-lg btn-danger " type="submit" onClick={this.handleDeleteUser.bind(this)} >Delete Account</button>

@@ -26,7 +26,7 @@ class Nav extends Component {
                 <ul className="nav nav-sidebar">
                     <NavItem to="/Stats"> 
                     <i className="fa fa-random fa-5x " aria-hidden="true"></i>
-                    <p>Stats</p>
+                    <p>Automation</p>
                     </NavItem>
                 </ul>
 
@@ -37,12 +37,6 @@ class Nav extends Component {
                     </NavItem>
                 </ul>
 
-                <ul className="nav nav-sidebar">
-                    <NavItem to="/Settings">
-                    <i className="fa fa-cogs fa-5x " aria-hidden="true"></i>
-                    <p>Settings</p>
-                    </NavItem>
-                </ul>
         </div>
         );
       }
